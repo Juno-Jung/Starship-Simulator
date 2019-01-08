@@ -2751,8 +2751,6 @@ function module_power_on( Strnum, Num )
 	local found = nil
 	local num = 0
 
-	display(num &lt; Num)
-
 	if not found then
   	for i = 1, n1 do
   		if Strnum == starship.simulation.modules.small.weapons[i][2][1] and num &lt; Num then
@@ -2820,6 +2818,26 @@ function module_power_on( Strnum, Num )
 		cecho("\n Modules successfully turned on, and others of this type are now off")	
 	end
 	cecho("\n")	
+end</script>
+					<eventHandlerList />
+				</Script>
+			</ScriptGroup>
+			<ScriptGroup isActive="yes" isFolder="yes">
+				<name>Beauty Functions</name>
+				<packageName></packageName>
+				<script></script>
+				<eventHandlerList />
+				<Script isActive="yes" isFolder="no">
+					<name>Add whitespace</name>
+					<packageName></packageName>
+					<script>-- Add space to end
+function a_s( Str, max )
+	local wspace = ""
+	
+	for i = 1, max do
+		wspace = wspace.." "
+	end
+	return string.cut( Str..""..wspace, max)
 end</script>
 					<eventHandlerList />
 				</Script>
