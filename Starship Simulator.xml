@@ -1,0 +1,2833 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MudletPackage>
+<MudletPackage version="1.001">
+	<TriggerPackage />
+	<TimerPackage />
+	<AliasPackage>
+		<AliasGroup isActive="yes" isFolder="yes">
+			<name>Starship Simulator</name>
+			<script></script>
+			<command></command>
+			<packageName></packageName>
+			<regex></regex>
+			<Alias isActive="yes" isFolder="no">
+				<name>Add Component/Module</name>
+				<script>if matches[2] == "module" or matches[2] == "modules" or matches[2] == "mod" then
+	add_module_part( matches[3] )
+elseif matches[2] == "superstructure" or matches[2] == "superstructures" or matches[2] == "ss" then
+	add_superstructure_part( matches[3] )
+elseif matches[2] == "engine" or matches[2] == "engines" then
+	add_engine_part( matches[3] )
+elseif matches[2] == "shield" or matches[2] == "shields" then
+	add_shield_part( matches[3] )
+elseif matches[2] == "capacitor" or matches[2] == "capacitors" or matches[2] == "cap" then
+	add_capacitor_part( matches[3] )
+elseif matches[2] == "shipsim" or matches[2] == "shipsims" then
+	add_shipsim_part( matches[3] )
+elseif matches[2] == "sensor" or matches[2] == "sensors" then
+	add_sensor_part( matches[3] )	
+else
+	cecho("\n\n That component or module does not exist")
+end
+</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^ss add (\w+) (\d+)$</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>Remove Component</name>
+				<script>if matches[2] == "superstructure" or matches[2] == "superstructures" or matches[2] == "ss" then
+	remove_superstructure_part()
+elseif matches[2] == "engine" or matches[2] == "engines" then
+	remove_engine_part()
+elseif matches[2] == "shield" or matches[2] == "shields" then
+	remove_shield_part()
+elseif matches[2] == "capacitor" or matches[2] == "capacitors" or matches[2] == "cap" then
+	remove_capacitor_part()
+elseif matches[2] == "shipsim" or matches[2] == "shipsims" then
+	remove_shipsim_part()
+elseif matches[2] == "sensor" or matches[2] == "sensors" then
+	remove_sensor_part()		
+else
+	cecho("\n\n That component or module does not exist")
+end
+</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^ss remove (\w+)$</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>Remove Module</name>
+				<script>remove_module_part( matches[2] )
+</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^ss remove (?:modules|module|mod) (\d+)$</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>List All Components/Modules</name>
+				<script>if matches[2] == "module" or matches[2] == "modules" or matches[2] == "mod" then
+	list_module_parts()
+elseif matches[2] == "superstructure" or matches[2] == "superstructures" or matches[2] == "ss" then
+	list_superstructure_parts()
+elseif matches[2] == "engine" or matches[2] == "engines" then
+	list_engine_parts()
+elseif matches[2] == "shield" or matches[2] == "shields" then
+	list_shield_parts()
+elseif matches[2] == "capacitor" or matches[2] == "capacitors" or matches[2] == "cap" then
+	list_capacitor_parts()
+elseif matches[2] == "shipsim" or matches[2] == "shipsims" then
+	list_shipsim_parts()
+elseif matches[2] == "sensor" or matches[2] == "sensors" then
+	list_sensor_parts()	
+else
+	cecho("\n\n That component or module does not exist")
+end
+</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^ss list (\w+)$</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>List Specific Component/Module</name>
+				<script>if matches[2] == "module" or matches[2] == "modules" or matches[2] == "mod" then
+	list_module_parts(matches[3])
+elseif matches[2] == "superstructure" or matches[2] == "superstructures" or matches[2] == "ss" then
+	list_superstructure_parts(matches[3])
+elseif matches[2] == "engine" or matches[2] == "engines" then
+	list_engine_parts(matches[3])
+elseif matches[2] == "shield" or matches[2] == "shields" then
+	list_shield_parts(matches[3])
+elseif matches[2] == "capacitor" or matches[2] == "capacitors" or matches[2] == "cap" then
+	list_capacitor_parts(matches[3])
+elseif matches[2] == "shipsim" or matches[2] == "shipsims" then
+	list_shipsim_parts(matches[3])
+elseif matches[2] == "sensor" or matches[2] == "sensors" then
+	list_sensor_parts(matches[3])	
+else
+	cecho("\n\n That component or module does not exist")
+end
+</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^ss list (\w+) (\d+)$</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>Clear All Modules</name>
+				<script>remove_all_module_parts()
+</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^ss clear (?:modules|module|mod)$</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>Clear All Components</name>
+				<script>reset_resources()
+remove_all_component_parts()
+
+</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^ss clear (?:ship|component|components)$</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>Clear Everything</name>
+				<script>reset_resources()
+remove_all_module_parts()
+remove_all_component_parts()
+</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^ss clear all$</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>Show Ship Info</name>
+				<script>display_simulation_ship()</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^ss info$</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>Show Component/Module Info</name>
+				<script>if matches[2] == "module" or matches[2] == "modules" or matches[2] == "mod" then
+	display_simulation_modules_short()
+elseif matches[2] == "superstructure" or matches[2] == "superstructures" or matches[2] == "ss" then
+	display_simulation_superstructure()
+elseif matches[2] == "engine" or matches[2] == "engines" then
+	display_simulation_engine()
+elseif matches[2] == "shield" or matches[2] == "shields" then
+	display_simulation_shield()
+elseif matches[2] == "capacitor" or matches[2] == "capacitors" or matches[2] == "cap" then
+	display_simulation_capacitor()
+elseif matches[2] == "shipsim" or matches[2] == "shipsims" then
+	display_simulation_shipsim()
+elseif matches[2] == "sensor" or matches[2] == "sensors" then
+	display_simulation_sensor()	
+else
+	cecho("\n\n That component or module does not exist")
+end
+
+</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^ss info (\w+)$</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>Show Module Info List</name>
+				<script>display_simulation_modules()</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^ss info (?:module|modules|mod) (?:f|full)$</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>Power Modules</name>
+				<script>module_power_on( matches[2], tonumber(matches[3]) )</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^ss power (\d+) (\d+)$</regex>
+			</Alias>
+		</AliasGroup>
+	</AliasPackage>
+	<ActionPackage />
+	<ScriptPackage>
+		<ScriptGroup isActive="yes" isFolder="yes">
+			<name>Starship Simulator</name>
+			<packageName></packageName>
+			<script>
+
+</script>
+			<eventHandlerList />
+			<ScriptGroup isActive="yes" isFolder="yes">
+				<name>Starship Simulator Initialization Folder</name>
+				<packageName></packageName>
+				<script>-- So I don't click on this by accident all the time.</script>
+				<eventHandlerList />
+				<Script isActive="yes" isFolder="no">
+					<name>Starship Simulator Initialization</name>
+					<packageName></packageName>
+					<script>
+starship = {}
+starship.simulation = {}
+starship.simulation.power = {}
+starship.simulation.power.generated = 0
+starship.simulation.power.usage = 0
+starship.simulation.cycles = {}
+starship.simulation.cycles.generated = 0
+starship.simulation.cycles.usage = 0
+starship.simulation.mass = {}
+starship.simulation.mass.capacity = 0
+starship.simulation.mass.used = 0
+starship.simulation.speed = 0
+starship.simulation.superstructure = nil
+starship.simulation.engine = nil
+starship.simulation.shield = nil
+starship.simulation.capacitor = nil
+starship.simulation.shipsim = nil
+starship.simulation.sensor = nil
+starship.simulation.modules = {}
+starship.simulation.modules.small = {}
+starship.simulation.modules.small.weapons = {}
+starship.simulation.modules.small.utilities = {}
+starship.simulation.modules.medium = {}
+starship.simulation.modules.medium.weapons = {}
+starship.simulation.modules.medium.utilities = {}
+starship.simulation.modules.large = {}
+starship.simulation.modules.large.weapons = {}
+starship.simulation.modules.large.utilities = {}
+
+starship.simulation.price = 0</script>
+					<eventHandlerList />
+				</Script>
+				<Script isActive="yes" isFolder="no">
+					<name>Starship Simulator Superstructures</name>
+					<packageName></packageName>
+					<script>
+starship.superstructures = 
+-- Model Number, Make, Model, Size, Mass, Hull, Turn Time, Type, Capacity, Power Requirement, Max Power Output, Cycle Requirement, Small Mods, Medium Mods, Large Mods, Cost 	
+{
+	{ "1", "Ixodon Industries", "Singularity", 99, 63500, 32560, 1.8, "Battleship", 35270, 8630, 64770, 2400, 5, 4, 2, 247500 },
+	{ "2", "Relian Shipyards", "Typhoon", 94, 49250, 23900, 1.78, "Battleship", 243800, 4810, 48260, 1750, 5, 4, 2, 235000 }, 
+	{ "3", "Sinseel Systems", "Architect", 89, 43500, 21530, 1.52, "Battleship", 21850, 4560, 45670, 1310, 4, 4, 2, 222500 },
+	{ "4", "Wayland Astrotech", "Quasar", 83, 34500, 17420, 1.56, "Battleship", 16990, 3660, 35190, 1150, 4, 3, 2, 207500 },
+	{ "5", "Akari Yards", "Marauder", 25, 4870, 2320, 1, "Corvette", 2710, 483, 4820, 168, 3, 2, 0, 65200 },
+	{ "6", "Kurovani Defense", "Stalker", 21, 4170, 2140, 0.82, "Corvette", 3270, 1210, 8470, 139, 2, 2, 0, 52500 },
+	{ "7", "Thill Conglomerate", "Scimitar", 33, 5770, 2810, 0.88, "Corvette", 2930, 457, 5250, 188, 3, 2, 0, 82500 },
+	{ "8", "Sinseel Systems", "Sunderer", 38, 7100, 3530, 1.15, "Corvette", 2190, 574, 6880, 199, 1, 1, 1, 95000 },
+	{ "9", "Tiravoa Shipworks", "Intrepid", 29, 5550, 3220, 0.98, "Corvette", 2670, 944, 5660, 185, 3, 2, 0, 72500 },
+	{ "10", "Ixodon Industries", "Twilight", 77, 27000, 14430, 1.6, "Cruiser", 14210, 3300, 26460, 1800, 3, 3, 2, 192500 },
+	{ "11", "Relian Shipyards", "Hurricane", 72, 22500, 11300, 1.54, "Cruiser", 11250, 2220, 22270, 750, 3, 2, 2, 180000 },
+	{ "12", "Sinseel Systems", "Conqueror", 68, 19500, 10200, 1.48, "Cruiser", 8620, 2900, 22300, 625, 3, 2, 2, 170000 },
+	{ "13", "Wayland Astrotech", "Nova", 64, 17250, 8750, 1.4, "Cruiser", 7840, 1790, 17940, 663, 2, 2, 2, 160000 },
+	{ "14", "Thill Conglomerate", "Battleaxe", 61, 15000, 7170, 1.35, "Cruiser", 7890, 1840, 18450, 514, 2, 2, 2, 152500 },
+	{ "15", "Akari Yards", "Ravager", 42, 8250, 4360, 1, "Destroyer", 4120, 916, 8330, 250, 2, 1, 1, 105000 },
+	{ "16", "Kurovani Defense", "Predator", 50, 11250, 5110, 1.12, "Destroyer", 5560, 1100, 11200, 375, 2, 2, 1, 125000 },
+	{ "17", "Relian Shipyards", "Cyclone", 56, 13500, 6810, 1.2, "Destroyer", 6270, 1180, 13900, 482, 2, 2, 1, 140000 },
+	{ "18", "Tiravoa Shipworks", "Valor", 46, 9750, 4770, 1.1, "Destroyer", 4640, 1110, 11210, 327, 2, 1, 1, 115000 },
+	{ "19", "Thill Conglomerate", "Ouran", 74, 14700, 7460, 1.8, "Heavy Freighter", 17290, 1800, 10490, 490, 3, 3, 0, 185000 },
+	{ "20", "Akari Yards", "Corsair", 7, 1400, 704, 0.55, "Interceptor", 1740, 140, 1380, 47, 2, 1, 0, 17500 },
+	{ "21", "Kurovani Defense", "Assassin", 10, 1950, 1580, 0.59, "Interceptor", 1580, 205, 2000, 65, 2, 1, 0, 25000 },
+	{ "22", "Wayland Astrotech", "Constellation", 66, 12300, 5970, 1.6, "Heavy Freighter", 11800, 979, 9980, 378, 3, 2, 0, 165000 },
+	{ "23", "Nakamura Syndicate", "Condor", 55, 9000, 5290, 1.4, "Heavy Freighter", 9900, 612, 6300, 287, 2, 2, 0, 137500 },
+	{ "24", "Relian Shipyards", "Squall", 17, 3650, 1750, 0.8, "Interceptor", 1810, 333, 3390, 119, 2, 2, 0, 42500 },
+	{ "25", "Tiravoa Shipworks", "Defiant", 13, 2870, 1550, 0.7, "Interceptor", 1670, 288, 2900, 98, 2, 2, 0, 32500 },
+	{ "26", "Akari Yards", "Buccaneer", 35, 4850, 2520, 0.96, "Light Freighter", 5570, 369, 3390, 155, 1, 1, 0, 87500 },
+	{ "27", "Kurovani Defense", "Hunter", 31, 4350, 2120, 0.9, "Light Freighter", 5550, 825, 2740, 167, 1, 1, 0, 77500 },
+	{ "28", "Sinseel Systems", "Traveller", 47, 6970, 4000, 1.2, "Light Freighter", 6900, 520, 4730, 225, 2, 1, 0, 117500 },
+	{ "29", "Tiravoa Shipworks", "Venture", 45, 6270, 3130, 1.05, "Light Freighter", 6970, 452, 4520, 216, 2, 1, 0, 112500 },
+	{ "30", "Ixodon Industries", "Abyss", 122, 117500, 62160, 3, "Supercruiser", 62500, 14760, 115150, 4280, 6, 5, 3, 305000 },
+	{ "31", "Nakamura Syndicate", "Thunderbird", 115, 100000, 41660, 2.8, "Supercruiser", 50250, 9900, 102000, 3430, 5, 5, 3, 287500 },
+	{ "32", "Sinseel Systems", "Progenitor", 79, 18000, 8370, 2.5, "Superhauler", 20220, 1240, 12470, 604, 4, 3, 0, 197500 },
+	{ "33", "Ixodon Industries", "Maw", 89, 24000, 15000, 2.8, "Superhauler", 23760, 1460, 16800, 1000, 4, 3, 0, 222500 },
+	{ "34", "Thill Conglomerate", "Warhammer", 105, 72500, 32950, 2.65, "Supercruiser", 36610, 7370, 82650, 2360, 5, 4, 3, 262500 },
+	{ "35", "Wayland Astrotech", "Galaxy", 97, 28200, 14170, 3, "Superhauler", 28770, 2300, 20130, 916, 4, 4, 0, 242500 },
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+					<eventHandlerList />
+				</Script>
+				<Script isActive="yes" isFolder="no">
+					<name>Starship Simulator Engines</name>
+					<packageName></packageName>
+					<script>
+-- Model Number, Make, Model, Output, Mass, Price
+
+starship.engines = 
+{
+  {
+    "1",
+    "Ostarian Designs",
+    "Fusion 25",
+    2633,
+    325,
+		1527		
+  },
+  {
+    "2",
+    "Wayland Astrotech",
+    "F35-AST",
+    6715,
+    850,
+		3895
+  },
+  {
+    "3",
+    "Tiravoa Shipworks",
+    "T-80",
+    15860,
+    2000,
+		5603
+  },
+  {
+    "4",
+    "Ostarian Designs",
+    "Fusion 100",
+    10413,
+    1300,
+		9199
+  },
+  {
+    "5",
+    "Sinseel Systems",
+    "SSF140",
+    13583,
+    1700,
+		6040
+  },
+  {
+    "6",
+    "Sunwide Omnitech",
+    "Flare 175",
+    18225,
+    2250,
+		7878
+  },
+  {
+    "7",
+    "Osesk Lines",
+    "LMF4230",
+    22852,
+    2900,
+		10571
+  },
+  {
+    "8",
+    "Wayland Astrotech",
+    "F300-AST",
+    28728,
+    3600,
+		13254
+  },
+  {
+    "9",
+    "Sinseel Systems",
+    "SSF380",
+    38640,
+    4800,
+		16662
+  },
+  {
+    "10",
+    "Ostarian Designs",
+    "Fusion 480",
+    48983,
+    6100,
+		22411
+  },
+  {
+    "11",
+    "Sunwide Omnitech",
+    "Flare 600",
+    59700,
+    7500,
+		28410
+  },
+  {
+    "12",
+    "Wayland Astrotech",
+    "F735-AST",
+    72360,
+    9000,
+		34626
+  },
+  {
+    "13",
+    "Sinseel Systems",
+    "SSF840",
+    84840,
+    10500,
+		41969
+  },
+  {
+    "14",
+    "Ostarian Designs",
+    "Fusion 1000",
+    96898,
+    12250,
+		49204
+  },
+  {
+    "15",
+    "Sunwide Omnitech",
+    "Flare 1100",
+    110460,
+    14000,
+		56201
+  },
+  {
+    "16",
+    "Tiravoa Shipworks",
+    "T-1400",
+    141925,
+    17500,
+		64067
+  },
+  {
+    "17",
+    "Ostarian Designs",
+    "Fusion 1700",
+    169050,
+    21000,
+		82317
+  },
+  {
+    "18",
+    "Sinseel Systems",
+    "SSF2000",
+    196245,
+    24500,
+		98049
+  },
+  {
+    "19",
+    "Sunwide Omnitech",
+    "Flare 2400",
+    240000,
+    30000,
+		113822
+  },
+  {
+    "20",
+    "Ostarian Designs",
+    "Gamma 35",
+    3518,
+    350,
+		139200
+  },
+  {
+    "21",
+    "Ostarian Designs",
+    "Gamma 50",
+    5050,
+    500,
+		157366
+  },
+  {
+    "22",
+    "Sinseel Systems",
+    "SSG85",
+    8449,
+    850,
+		2040
+  },
+  {
+    "23",
+    "Wayland Astrotech",
+    "G115-AST",
+    11477,
+    1150,
+		2929
+  },
+  {
+    "24",
+    "Ostarian Designs",
+    "Gamma 150",
+    15810,
+    1550,
+		4900
+  },
+  {
+    "25",
+    "Sunwide Omnitech",
+    "Gburst 210",
+    20748,
+    2100,
+		6657
+  },
+  {
+    "26",
+    "Sinseel Systems",
+    "SSG260",
+    26520,
+    2600,
+		9170
+  },
+	{
+		"27",
+		"Wayland Astrotech",
+		"G325-AST",
+		32825,
+		3250,
+		12034
+	},
+  {
+    "28",
+    "Ostarian Designs",
+    "Gamma 450",
+    44189,
+    4450,
+		15382
+  },
+  {
+    "29",
+    "Sunwide Omnitech",
+    "G-burst 550",
+    54725,
+    5500, 
+		19039
+  },
+  {
+    "30",
+    "Sinseel Systems",
+    "SSG670",
+    68407,
+    6700,
+		25630
+  },
+  {
+    "31",
+    "Osesk Lines",
+    "LMG4800",
+    79120,
+    8000,
+		31741
+  },
+  {
+    "32",
+    "Wayland Astrotech",
+    "G975-AST",
+    98670,
+    9750,
+		39676
+  },
+  {
+    "33",
+    "Sunwide Omnitech",
+    "G-burst 1100",
+    110990,
+    11000,
+		45890
+  },
+  {
+    "34",
+    "Sinseel Systems",
+    "SSG1250",
+    124375,
+    12500,
+		57229
+  },
+  {
+    "35",
+    "Coreward Group",
+    "CGGM-1450",
+    143840,
+    14500,
+		64374
+  },
+  {
+    "36",
+    "Wayland Astrotech",
+    "G1700-AST",
+    172210,
+    17000,
+		72138
+  },
+  {
+    "37",
+    "Sinseel Systems",
+    "SSG2000",
+    192465,
+    19500,
+		83427
+  },
+  {
+    "38",
+    "Sunwide Omnitech",
+    "G-burst 2250",
+    222525,
+    22500,
+		99882
+  },
+  {
+    "39",
+    "Sinseel Systems",
+    "SSG2000",
+    192465,
+    19500,
+		111630
+  },
+  {
+    "40",
+    "Sunwide Omnitech",
+    "G-burst 2250",
+    222525,
+    22500,
+		129065
+  },
+  {
+    "41",
+    "Tiravoa Shipworks",
+    "TA-210",
+    20738,
+    1750,
+		12028
+  },
+  {
+    "42",
+    "Sunwide Omnitech",
+    "L-Drive 265",
+    26752,
+    2200,
+		15516
+  },
+  {
+    "43",
+    "Osesk Lines",
+    "LMA4300",
+    30125,
+    2500,
+		17473
+  },
+  {
+    "44",
+    "Tiravoa Shipworks",
+    "TA-210",
+    20738,
+    1750,
+		18053
+  },
+  {
+    "45",
+    "Sunwide Omnitech",
+    "L-Drive 265",
+    26752,
+    2200,
+		22575
+  },
+  {
+    "46",
+    "Osesk Lines",
+    "LMA4300",
+    30125,
+    2500,
+		34887
+  },
+  {
+    "47",
+    "Tiravoa Shipworks",
+    "TA-375",
+    31125,
+    3125,
+		36357
+  },
+  {
+    "48",
+    "Wrega Gravitics",
+    "WG-465A",
+    38922,
+    3900,
+		48964
+  },
+  {
+    "49",
+    "Sunwide Omnitech",
+    "L-Drive 600",
+    60150,
+    5000,
+		59308
+  },
+  {
+    "50",
+    "Wrega Gravitics",
+    "WG-750A",
+    62685,
+    6300,
+		57014
+  },
+  {
+    "51",
+    "Coreward Group",
+    "CGAM-840",
+    84420,
+    7000,
+		66100
+  },
+  {
+    "52",
+    "Wayland Astrotech",
+    "A1020-AST",
+    102255,
+    8500,
+		94900
+  },
+  {
+    "53",
+    "Wrega Gravitics",
+    "WG-1200A",
+    98300,
+    10000,
+		115031
+  },
+  {
+    "54",
+    "Sunwide Omnitech",
+    "L-Drive 1400",
+    113965,
+    11500,
+		30885
+  },
+  {
+    "55",
+    "Wayland Astrotech",
+    "A1620-AST",
+    163620,
+    13500,
+		34642
+  },
+  {
+    "56",
+    "Coreward Group",
+    "CGAM-1980",
+    198330,
+    16500,
+		42417
+  },
+  {
+    "57",
+    "Coreward Group",
+    "CGGR-525",
+    53250,
+    3750,
+		50188
+  },
+  {
+    "58",
+    "Wrega Gravitics",
+    "WG-600G",
+    59727,
+    4300,
+		58954
+  },
+  {
+    "59",
+    "Wayland Astrotech",
+    "GR735-AST",
+    73133,
+    5250,
+		70644
+  },
+  {
+    "60",
+    "Wrega Gravitics",
+    "WG-860G",
+    86531,
+    6150,
+		89256
+  },
+  {
+    "61",
+    "Wayland Astrotech",
+    "GR1015-AST",
+    101645,
+    7250,
+		106691
+  },
+  {
+    "62",
+    "Coreward Group",
+    "CGGR-1225",
+    121800,
+    8750,
+		118581
+  },
+  {
+    "63",
+    "Wrega Gravitics",
+    "WG-1540G",
+    153890,
+    11000,
+		137054
+  }
+}</script>
+					<eventHandlerList />
+				</Script>
+				<Script isActive="yes" isFolder="no">
+					<name>Starship Simulator Shields</name>
+					<packageName></packageName>
+					<script>
+-- Model Number, Make, Model, Strength, Mass, Recharge, Thermal Res, Kinetic Res, EM Res, Price
+starship.shields = 
+{
+  {
+    "1",
+    "Nebulan Yards",
+    "Sentinel 24",
+    2400,
+    200,
+    0,
+    0,
+    0,
+    0,
+		696
+  },
+  {
+    "2",
+    "Warpring Enterprises",
+    "Bulwark 35",
+    3570,
+    300,
+    0,
+    0,
+    0,
+    0,
+		1035
+  },
+  {
+    "3",
+    "Relian Shipyards",
+    "Fortress 60",
+    5900,
+    500,
+    0,
+    0,
+    0,
+    0,
+		1711
+  },
+  {
+    "4",
+    "Nebulan Yards",
+    "Sentinel 94",
+    9360,
+    800,
+    0,
+    0,
+    0,
+    0,
+		2714
+  },
+  {
+    "5",
+    "Ixodon Industries",
+    "Aegis 140",
+    13920,
+    1200,
+    0,
+    0,
+    0,
+    0,
+		4037
+  },
+  {
+    "6",
+    "Warpring Enterprises",
+    "Bulwark 180",
+    18400,
+    1600,
+    0,
+    0,
+    0,
+    0,
+		5336
+  },
+  {
+    "7",
+    "Akari Yards",
+    "Defender 240",
+    23940,
+    2100,
+    0,
+    0,
+    0,
+    0,
+		6943
+  },
+  {
+    "8",
+    "Nebulan Yards",
+    "Sentinel 305",
+    30510,
+    2700,
+    0,
+    0,
+    0,
+    0,
+		8848
+  },
+  {
+    "9",
+    "Relian Shipyards",
+    "Fortress 400",
+    39200,
+    3500,
+    0,
+    0,
+    0,
+    0,
+		11368
+  },
+  {
+    "10",
+    "Warpring Enterprises",
+    "Bulwark 500",
+    49950,
+    4500,
+    0,
+    0,
+    0,
+    0,
+		14486
+  },
+  {
+    "11",
+    "Ixodon Industries",
+    "Aegis 630",
+    62700,
+    5700,
+    0,
+    0,
+    0,
+    0,
+		18183
+  },
+  {
+    "12",
+    "Akari Yards",
+    "Defender 760",
+    76300,
+    7000,
+    0,
+    0,
+    0,
+    0,
+		22127
+  },
+  {
+    "13",
+    "Nebulan Yards",
+    "Sentinel 920",
+    91800,
+    8500,
+    0,
+    0,
+    0,
+    0,
+		26622
+  },
+  {
+    "14",
+    "Warpring Enterprises",
+    "Bulwark 1100",
+    107000,
+    10000,
+    0,
+    0,
+    0,
+    0,
+		31030
+  },
+  {
+    "15",
+    "Relian Shipyards",
+    "Fortres 1250",
+    127200,
+    12000,
+    0,
+    0,
+    0,
+    0,
+		36888
+  },
+  {
+    "16",
+    "Ixodon Industries",
+    "Aegis 1500",
+    147000,
+    14000,
+    0,
+    0,
+    0,
+    0,
+		42630
+  },
+  {
+    "17",
+    "Nebulan Yards",
+    "Sentinel 1800",
+    176800,
+    17000,
+    0,
+    0,
+    0,
+    0,
+		51272
+  },
+  {
+    "18",
+    "Warpring Enterprises",
+    "Bulwark 2000",
+    206000,
+    20000,
+    0,
+    0,
+    0,
+    0,
+		59740
+  },
+  {
+    "19",
+    "Akari Yards",
+    "Defender 2400",
+    234600,
+    23000,
+    0,
+    0,
+    0,
+    0,
+		68034
+  },
+  {
+    "20",
+    "Relian Shipyards",
+    "Fortress 2600",
+    262600,
+    26000,
+    0,
+    0,
+    0,
+    0,
+		76154
+  },
+  {
+    "21",
+    "Ixodon Industries",
+    "Aegis 3000",
+    300000,
+    30000,
+    0,
+    0,
+    0,
+    0,
+		87000
+  }
+}
+
+</script>
+					<eventHandlerList />
+				</Script>
+				<Script isActive="yes" isFolder="no">
+					<name>Starship Simulator Capacitors</name>
+					<packageName></packageName>
+					<script>
+-- Model Number, Make, Model, Capacity, Mass
+starship.capacitors = 
+{
+  {
+    "1",
+    "Relian Shipyards",
+    "R2500",
+    2500,
+    50,
+		400
+  },
+  {
+    "2",
+    "Nakamura Syndicate",
+    "SC400",
+    3750,
+    75,
+		600
+  },
+  {
+    "3",
+    "Tiravoa Shipworks",
+    "CP5K",
+    5000,
+    100,
+		800
+  },
+  {
+    "4",
+    "Osesk Lines",
+    "D65-122",
+    6500,
+    130,
+		1040
+  },
+  {
+    "5",
+    "Sunwide Omnitech",
+    "MP75",
+    7500,
+    150,
+		1200
+  },
+  {
+    "6",
+    "Nakamura Syndicate",
+    "SC1000",
+    10000,
+    200,
+		1600
+  },
+  {
+    "7",
+    "Tiravoa Shipworks",
+    "CP12K",
+    12000,
+    240,
+		1920
+  },
+  {
+    "8",
+    "Warpring Enterprises",
+    "Enercell 145",
+    14500,
+    290,
+		2320
+  },
+  {
+    "9",
+    "Osesk Lines",
+    "D43-942",
+    17000,
+    340,
+		220
+  },
+  {
+    "10",
+    "Nakamura Syndicate",
+    "SC1800",
+    18500,
+    370,
+		2960
+  },
+  {
+    "11",
+    "Sunwide Omnitech",
+    "MP2000",
+    20000,
+    400,
+		3200
+  },
+  {
+    "12",
+    "Warpring Enterprises",
+    "Enercell 2200",
+    22000,
+    440,
+		3520
+  },
+  {
+    "13",
+    "Thill Conglomerate",
+    "Epislon 2550",
+    25000,
+    500,
+		4000
+  },
+  {
+    "14",
+    "Sunwide Omnitech",
+    "MP3200",
+    32500,
+    650,
+		5200
+  },
+  {
+    "15",
+    "Coreward Group",
+    "LP35-TR",
+    36000,
+    720,
+		5760
+  },
+  {
+    "16",
+    "Warpring Enterprises",
+    "Enercell 4000",
+    43000,
+    860,
+		6880
+  },
+  {
+    "17",
+    "Thill Conglomerate",
+    "Sigma 4700",
+    47500,
+    950,
+		7600
+  },
+  {
+    "18",
+    "Coreward Group",
+    "LP56-QV",
+    56250,
+    1125,
+		9000
+  },
+  {
+    "19",
+    "Nakamura Syndicate",
+    "SC6500",
+    67500,
+    1350,
+		10800
+  },
+  {
+    "20",
+    "Thill Conglomerate",
+    "Omega 8000",
+    80000,
+    1600,
+		12800
+  },
+  {
+    "21",
+    "Testing Capacitor",
+    "TST 1",
+    250000,
+    5000,
+		40000
+  }
+}
+
+</script>
+					<eventHandlerList />
+				</Script>
+				<Script isActive="yes" isFolder="no">
+					<name>Starship Simulator Shipsims</name>
+					<packageName></packageName>
+					<script>
+-- Model Number, Model, Make, Max Cycles, Halons per Cycle, Price
+starship.shipsims = 
+{
+  {
+    "1",
+    "Nebulan Yards",
+    "NY50",
+    100,
+    5,
+		1160
+  },
+  {
+    "2",
+    "Bor Rai Cognition",
+    "BRC80",
+    160,
+    5.1,
+		1857
+  },
+  {
+    "3",
+    "Aphador Cooperative",
+    "MPL120",
+    240,
+    5.2,
+		2785
+  },
+  {
+    "4",
+    "Sinseel Systems",
+    "SS150",
+    300,
+    5.3,
+		3481
+  },
+  {
+    "5",
+    "Nebulan Yards",
+    "NY200",
+    400,
+    5.4,
+		4642
+  },
+  {
+    "6",
+    "Aphador Cooperative",
+    "MPL270",
+    540,
+    5.5,
+		6266
+  },
+  {
+    "7",
+    "Bor Rai Cognition",
+    "BRC350",
+    700,
+    5.6,
+		8123
+  },
+  {
+    "8",
+    "Nebulan Yards",
+    "NY440",
+    880,
+    5.7,
+		10212
+  },
+  {
+    "9",
+    "Sinseel Systems",
+    "SS550",
+    1100,
+    5.8,
+		12765
+  },
+  {
+    "10",
+    "Aphador Cooperative",
+    "MPL700",
+    1400,
+    5.9,
+		16246
+  },
+  {
+    "11",
+    "Bor Rai Cognition",
+    "BRC900",
+    1800,
+    6,
+		20888
+  },
+  {
+    "12",
+    "Nebulan Yards",
+    "NY1150",
+    2300,
+    6.2,
+		26691
+  },
+  {
+    "13",
+    "Aphador Cooperative",
+    "MPL1400",
+    2800,
+    6.2,
+		32493
+  },
+  {
+    "14",
+    "Nyaza Char'nae",
+    "NCN1700",
+    3400,
+    6.3,
+		39456
+  },
+  {
+    "15",
+    "Sinseel Systems",
+    "SS2100",
+    4200,
+    6.4,
+		48739
+  },
+  {
+    "16",
+    "Nyaza Char'nae",
+    "NCN2500",
+    5000,
+    6.5,
+		58023
+  },
+  {
+    "17",
+    "Bor Rai Cognition",
+    "BRC3000",
+    6000,
+    6.6,
+		69628
+  },
+  {
+    "18",
+    "Aphador Cooperative",
+    "MPL3500",
+    7000,
+    6.7,
+		81232
+  },
+  {
+    "19",
+    "Nyaza Char'nae",
+    "NCN4000",
+    8000,
+    6.8,
+		92837
+  }
+}</script>
+					<eventHandlerList />
+				</Script>
+				<Script isActive="yes" isFolder="no">
+					<name>Starship Simulator Sensors</name>
+					<packageName></packageName>
+					<script>
+-- Model Number, Make, Model, Sensor Strength, Mass, Price
+starship.sensors = 
+{
+  {
+    "1",
+    "Artekeera Detection",
+    "SG1",
+    10,
+    65,
+		263
+  },
+  {
+    "2",
+    "Coreward Group",
+    "Core15",
+    11,
+    97,
+		375
+  },
+  {
+    "3",
+    "Osesk Lines",
+    "45Q-D3",
+    12,
+    146,
+		563
+  },
+  {
+    "4",
+    "Artekeera Detection",
+    "SG3",
+    13,
+    216,
+		825
+  },
+  {
+    "5",
+    "Aphador Cooperative",
+    "APH55",
+    14,
+    329,
+		2063
+  },
+  {
+    "6",
+    "Coreward Group",
+    "Core85",
+    15,
+    484,
+		3188
+  },
+  {
+    "7",
+    "Osesk Lines",
+    "55Q-I3",
+    16,
+    779,
+		5063
+  },
+  {
+    "8",
+    "Artekeera Detection",
+    "SG6",
+    17,
+    1261,
+		7500
+  },
+  {
+    "9",
+    "Coreward Group",
+    "Core300",
+    18,
+    2056,
+		11438
+  },
+  {
+    "10",
+    "Ixodon Industries",
+    "Revealer",
+    19,
+    3084,
+		18750
+  },
+  {
+    "11",
+    "Aphador Cooperative",
+    "APH750",
+    20,
+    4534,
+		28125
+  },
+  {
+    "12",
+    "Artekeera Detection",
+    "SG10",
+    21,
+    6574,
+		45000
+  },
+  {
+    "13",
+    "Ixodon Industries",
+    "Voidfinder",
+    22,
+    9466,
+		71250
+  }
+}</script>
+					<eventHandlerList />
+				</Script>
+				<Script isActive="yes" isFolder="no">
+					<name>Starship Simulator Modules</name>
+					<packageName></packageName>
+					<script>
+
+
+starship.modules = {}
+
+-- Model Number, Name, Size, Mass, Power Usage, Cycle Usage, Firing Speed, Weapon Damage, Reload Speed, Optimal Range, Fall-off Damage, Weapon Type, Price
+starship.modules.weapons = 
+{
+	{ "4", "Cannon I", "medium", 0, 200, 45, 2.5, 600, 5, 6, 0.15, "cannon", 11500 },
+	{ "7", "Targeted Missile I", "large", 0, 400, 900, 2.5, 1600, 5, 8, 0.25, "missile", 11500 },
+	{ "21", "Tractor Beam", "small", 0, 800, 600, 8, 1000, 5, 8, 0.3, "tractor", 11500 },
+	{ "30", "Mine Layer I", "large", 0, 300, 400, 12, 2000, 0, 5, 0.5, "mine", 11500 },
+}
+
+-- Model Number, Name, Size, Mass, Power Usage, Cycle Usage
+starship.modules.utilities =
+{
+	{ "22", "Skipdrive I", "small", 0, 2000, 1200, 11500 },
+}</script>
+					<eventHandlerList />
+				</Script>
+			</ScriptGroup>
+			<ScriptGroup isActive="yes" isFolder="yes">
+				<name>Starship Simulator Displays</name>
+				<packageName></packageName>
+				<script></script>
+				<eventHandlerList />
+				<Script isActive="yes" isFolder="no">
+					<name>SS Display Simulation</name>
+					<packageName></packageName>
+					<script>
+function display_simulation_ship()
+	cecho("\n\n------------------------------------------------------------------------------\n")
+	cecho("                               Superstructure                                 \n")
+	cecho("------------------------------------------------------------------------------\n")
+	display_simulation_superstructure()
+	cecho("\n------------------------------------------------------------------------------\n")
+	cecho("                               Engine                                         \n")
+	cecho("------------------------------------------------------------------------------\n")
+	display_simulation_engine()
+	cecho("\n------------------------------------------------------------------------------\n")
+	cecho("                               Shield                                         \n")
+	cecho("------------------------------------------------------------------------------\n")
+	display_simulation_shield()
+	cecho("\n------------------------------------------------------------------------------\n")
+	cecho("                               Capacitor                                      \n")
+	cecho("------------------------------------------------------------------------------\n")	
+	display_simulation_capacitor()
+	cecho("\n------------------------------------------------------------------------------\n")
+	cecho("                               Shipsim                                        \n")
+	cecho("------------------------------------------------------------------------------\n")
+	display_simulation_shipsim()
+	cecho("\n------------------------------------------------------------------------------\n")
+	cecho("                               Sensor                                         \n")
+	cecho("------------------------------------------------------------------------------\n")
+	display_simulation_sensor()
+	cecho("\n------------------------------------------------------------------------------\n")
+	cecho("                               Resources                                        \n")
+	cecho("------------------------------------------------------------------------------\n")
+	display_resources_short()
+	cecho("\n\n")
+end
+
+function display_simulation_superstructure()
+	if starship.simulation.superstructure then
+		display_superstructure_part(starship.simulation.superstructure)
+		cecho("\n")
+	else
+		cecho("\n Superstructure has not been added yet.\n")					
+	end
+end
+
+function display_simulation_engine()
+	if starship.simulation.engine then
+		display_engine_part(starship.simulation.engine)
+		cecho("\n")
+	else
+		cecho("\n Engine has not been added yet.\n")					
+	end
+end
+
+function display_simulation_shield()
+	if starship.simulation.shield then
+		display_shield_part(starship.simulation.shield)
+		cecho("\n")
+	else
+		cecho("\n Shield has not been added yet.\n")					
+	end
+end
+
+function display_simulation_capacitor()
+	if starship.simulation.capacitor then
+		display_capacitor_part(starship.simulation.capacitor)
+		cecho("\n")
+	else
+		cecho("\n Capacitor has not been added yet.\n")
+	end
+end
+
+function display_simulation_shipsim()
+	if starship.simulation.shipsim then
+		display_shipsim_part(starship.simulation.shipsim)
+		cecho("\n")
+	else
+		cecho("\n Shipsim has not been added yet.\n")	
+	end
+end
+
+function display_simulation_sensor()
+	if starship.simulation.sensor then
+		display_sensor_part(starship.simulation.sensor)
+		cecho("\n")
+	else
+		cecho("\n Sensor has not been added yet.\n")	
+	end
+end
+
+function display_simulation_modules_short()
+	cecho("\n------------------------------------------------------------------------------\n")
+	cecho("                               Modules                                          \n")
+	cecho("------------------------------------------------------------------------------\n\n")
+	cecho(" Size      ID    Type        Name\n\n")
+	cecho("------------------------------------------------------------------------------\n")
+	display_simulation_modules_small_short()
+	display_simulation_modules_medium_short()
+	display_simulation_modules_large_short()
+	cecho("\n\n")
+end
+
+-- Separate from main components
+function display_simulation_modules_small_short()
+	local n = #starship.simulation.modules.small.weapons
+	local m = #starship.simulation.modules.small.utilities
+	for i = 1, n do
+		if starship.simulation.modules.small.weapons[i][1] then
+			cecho("\n "..a_s(starship.simulation.modules.small.weapons[i][2][3], 10)..""..a_s(starship.simulation.modules.small.weapons[i][2][1], 6).."Weapon      "..a_s(starship.simulation.modules.small.weapons[i][2][2], 20).."[ON]")
+		else
+			cecho("\n "..a_s(starship.simulation.modules.small.weapons[i][2][3], 10)..""..a_s(starship.simulation.modules.small.weapons[i][2][1], 6).."Weapon      "..a_s(starship.simulation.modules.small.weapons[i][2][2], 20).."[OFF]")		
+		end
+	end
+	for j = 1, m do
+		if starship.simulation.modules.small.utilities[j][1] then
+			cecho("\n "..a_s(starship.simulation.modules.small.utilities[j][2][3], 10)..""..a_s(starship.simulation.modules.small.utilities[j][2][1], 6).."Utility     "..a_s(starship.simulation.modules.small.utilities[j][2][2], 20).."[ON]")
+		else
+			cecho("\n "..a_s(starship.simulation.modules.small.utilities[j][2][3], 10)..""..a_s(starship.simulation.modules.small.utilities[j][2][1], 6).."Utility     "..a_s(starship.simulation.modules.small.utilities[j][2][2], 20).."[OFF]")		
+		end
+	end
+end
+
+function display_simulation_modules_medium_short()
+	local n = #starship.simulation.modules.medium.weapons
+	local m = #starship.simulation.modules.medium.utilities
+	for i = 1, n do
+		if starship.simulation.modules.medium.weapons[i][1] then
+			cecho("\n "..a_s(starship.simulation.modules.medium.weapons[i][2][3], 10)..""..a_s(starship.simulation.modules.medium.weapons[i][2][1], 6).."Weapon      "..a_s(starship.simulation.modules.medium.weapons[i][2][2], 20).."[ON]")
+		else
+			cecho("\n "..a_s(starship.simulation.modules.medium.weapons[i][2][3], 10)..""..a_s(starship.simulation.modules.medium.weapons[i][2][1], 6).."Weapon      "..a_s(starship.simulation.modules.medium.weapons[i][2][2], 20).."[OFF]")
+		end
+	end
+	for j = 1, m do
+		if starship.simulation.modules.medium.utilities[j][1] then
+			cecho("\n "..a_s(starship.simulation.modules.medium.utilities[j][2][3], 10)..""..a_s(starship.simulation.modules.medium.utilities[j][2][1], 6).."Utility     "..a_s(starship.simulation.modules.medium.utilities[j][2][2], 20).."[ON]")
+		else
+			cecho("\n "..a_s(starship.simulation.modules.medium.utilities[j][2][3], 10)..""..a_s(starship.simulation.modules.medium.utilities[j][2][1], 6).."Utility     "..a_s(starship.simulation.modules.medium.utilities[j][2][2], 20).."[OFF]")		
+		end
+	end
+end
+
+function display_simulation_modules_large_short()
+	local n = #starship.simulation.modules.large.weapons
+	local m = #starship.simulation.modules.large.utilities
+	for i = 1, n do
+		if starship.simulation.modules.large.weapons[i][1] then
+			cecho("\n "..a_s(starship.simulation.modules.large.weapons[i][2][3], 10)..""..a_s(starship.simulation.modules.large.weapons[i][2][1], 6).."Weapon      "..a_s(starship.simulation.modules.large.weapons[i][2][2], 20).."[ON]")
+		else
+			cecho("\n "..a_s(starship.simulation.modules.large.weapons[i][2][3], 10)..""..a_s(starship.simulation.modules.large.weapons[i][2][1], 6).."Weapon      "..a_s(starship.simulation.modules.large.weapons[i][2][2], 20).."[OFF]")		
+		end
+	end
+	for j = 1, m do
+		if starship.simulation.modules.large.utilities[j][1] then
+			cecho("\n "..a_s(starship.simulation.modules.large.utilities[j][2][3], 10)..""..a_s(starship.simulation.modules.large.utilities[j][2][1], 6).."Utility     "..a_s(starship.simulation.modules.large.utilities[j][2][2], 20).."[ON]")
+		else
+			cecho("\n "..a_s(starship.simulation.modules.large.utilities[j][2][3], 10)..""..a_s(starship.simulation.modules.large.utilities[j][2][1], 6).."Utility     "..a_s(starship.simulation.modules.large.utilities[j][2][2], 20).."[OFF]")		
+		end
+	end
+end
+
+function display_simulation_modules()
+	local n1 = #starship.simulation.modules.small.weapons
+	local n2 = #starship.simulation.modules.medium.weapons
+	local n3 = #starship.simulation.modules.large.weapons
+	local m1 = #starship.simulation.modules.small.utilities
+	local m2 = #starship.simulation.modules.medium.utilities
+	local m3 = #starship.simulation.modules.large.utilities
+	if n1 + n2 + n3 + m1 + m2 + m3 == 0 then
+		cecho("------------------------------------------------------------------------------\n")
+		cecho("                               Modules                                        \n")
+		cecho("------------------------------------------------------------------------------\n")
+		cecho("\n No modules have been installed.")			
+	else
+		cecho("------------------------------------------------------------------------------\n")
+		cecho("                               Modules                                        \n")
+		cecho("------------------------------------------------------------------------------\n")
+		display_simulation_modules_small()
+		display_simulation_modules_medium()
+		display_simulation_modules_large()
+	end
+	cecho("\n\n")
+end
+
+function display_simulation_modules_small()
+	local n = #starship.simulation.modules.small.weapons
+	local m = #starship.simulation.modules.small.utilities
+	for i = 1, n do
+		list_module_parts(starship.simulation.modules.small.weapons[i][2][1])
+	end
+	for j = 1, m do
+		list_module_parts(starship.simulation.modules.small.weapons[j][2][1])
+	end
+end
+
+function display_simulation_modules_medium()
+	local n = #starship.simulation.modules.medium.weapons
+	local m = #starship.simulation.modules.medium.utilities
+	for i = 1, n do
+		list_module_parts(starship.simulation.modules.medium.weapons[i][2][1])
+	end
+	for j = 1, m do
+		list_module_parts(starship.simulation.modules.medium.weapons[j][2][1])
+	end
+end
+
+function display_simulation_modules_large()
+	local n = #starship.simulation.modules.large.weapons
+	local m = #starship.simulation.modules.large.utilities
+	for i = 1, n do
+		list_module_parts(starship.simulation.modules.large.weapons[i][2][1])
+	end
+	for j = 1, m do
+		list_module_parts(starship.simulation.modules.large.weapons[j][2][1])
+	end
+end
+
+</script>
+					<eventHandlerList />
+				</Script>
+				<Script isActive="yes" isFolder="no">
+					<name>SS Display Superstructures</name>
+					<packageName></packageName>
+					<script>
+function list_superstructure_parts(Strnum)
+	local n = #starship.superstructures
+	local found = nil
+	cecho("\n")
+-- Model Number, Make, Model, Size, Mass, Hull, Turn Time, Type, Capacity, Power Requirement, Max Power Output, Cycle Requirement, Small Mods, Medium Mods, Large Mods, Cost 	
+	if Strnum then
+		cecho("------------------------------------------------------------------------------\n")
+		cecho("                               Superstructure                                 \n")
+		cecho("------------------------------------------------------------------------------\n")
+
+		for i = 1, n do
+			if Strnum == starship.superstructures[i][1] then
+				found = true
+				display_superstructure_part(starship.superstructures[i])
+			end
+		end
+		if not found then
+			cecho("\n Superstructure ID could not be found")
+		end
+	else
+		cecho(" ID    Model               Name                               Price\n\n")
+		cecho("------------------------------------------------------------------------------\n")
+		for i = 1, n do
+			cecho("\n "..a_s(starship.superstructures[i][1], 6)..""..a_s(starship.superstructures[i][8], 20)..""..a_s(starship.superstructures[i][2].." "..starship.superstructures[i][3], 35)..""..starship.superstructures[i][16])
+		end
+	end
+	cecho("\n\n")
+end
+
+function display_superstructure_part(List)
+	cecho("\n Model Number: "..List[1])
+	cecho("\n "..a_s("Make: "..List[2], 30).."Model: "..List[3])
+	cecho("\n "..a_s("Size: "..List[4], 30).."Mass: "..List[5].." tons")
+	cecho("\n "..a_s("Hull: "..List[6].." dam.", 30).."Turn Time: "..List[7])
+	cecho("\n "..a_s("Type: "..List[8], 30).."Capacity: "..List[9].." tons")
+	cecho("\n "..a_s("Min. Power: "..List[10].." halons", 30).."Max Power: "..List[11].." halons")
+	cecho("\n "..a_s("Min. Cycles: "..List[12], 30).."Small: "..List[13])				
+	cecho("\n "..a_s("Medium: "..List[14], 30).."Large: "..List[15])
+	cecho("\n Price: "..List[16])
+end
+
+</script>
+					<eventHandlerList />
+				</Script>
+				<Script isActive="yes" isFolder="no">
+					<name>SS Display Engines</name>
+					<packageName></packageName>
+					<script>
+function list_engine_parts(Strnum)
+	local n = #starship.engines
+	local found = nil
+	cecho("\n")
+-- Model Number, Make, Model, Output, Mass, Price
+	if Strnum then
+		cecho("------------------------------------------------------------------------------\n")
+		cecho("                               Engine                                         \n")
+		cecho("------------------------------------------------------------------------------\n")
+
+		for i = 1, n do
+			if Strnum == starship.engines[i][1] then
+				found = true
+				display_engine_part(starship.engines[i])
+			end
+		end
+		if not found then
+			cecho("\n Engine ID could not be found")		
+		end
+	else
+		cecho(" Type        ID    Name                                   Mass       Price\n\n")
+		cecho("------------------------------------------------------------------------------\n")
+		for i = 1, n do
+			cecho("\n Engine      "..a_s(starship.engines[i][1], 6)..""..a_s(starship.engines[i][2].." "..starship.engines[i][3], 39)..""..a_s(starship.engines[i][5], 11)..""..starship.engines[i][6])
+		end
+	end
+	cecho("\n\n")
+end
+
+function display_engine_part(List)
+	cecho("\n Model Number: "..List[1])
+	cecho("\n "..a_s("Make: "..List[2], 30).."Model: "..List[3])
+	cecho("\n "..a_s("Output: "..List[4].." halons", 30).."Mass: "..List[5].." tons")
+	cecho("\n Price: "..List[6])
+end
+
+
+</script>
+					<eventHandlerList />
+				</Script>
+				<Script isActive="yes" isFolder="no">
+					<name>SS Display Shields</name>
+					<packageName></packageName>
+					<script>
+function list_shield_parts(Strnum)
+	local n = #starship.shields
+	local found = nil
+	cecho("\n")
+-- Model Number, Make, Model, Strength, Mass, Recharge, Thermal Res, Kinetic Res, EM Res, Price
+	if Strnum then
+		cecho("------------------------------------------------------------------------------\n")
+		cecho("                               Shield                                         \n")
+		cecho("------------------------------------------------------------------------------\n")
+
+		for i = 1, n do
+			if Strnum == starship.shields[i][1] then
+				found = true
+				display_shield_part(starship.shields[i])
+			end
+		end
+		if not found then
+			cecho("\n Shield ID could not be found")		
+		end
+	else
+		cecho(" Type        ID    Name                                   Mass       Price\n\n")
+		cecho("------------------------------------------------------------------------------\n")
+		for i = 1, n do
+			cecho("\n Shield      "..a_s(starship.shields[i][1], 6)..""..a_s(starship.shields[i][2].." "..starship.shields[i][3], 39)..""..a_s(starship.shields[i][5], 11)..""..starship.shields[i][10])
+		end
+	end
+	cecho("\n\n")
+end
+
+function display_shield_part(List)
+	cecho("\n Model Number: "..List[1])
+	cecho("\n "..a_s("Make: "..List[2], 30).."Model: "..List[3])
+	cecho("\n "..a_s("Strength: "..List[4].." dam.", 30).."Mass: "..List[5].." tons")
+	cecho("\n "..a_s("Recharge: "..List[6].."s", 30).."Thermal Res: "..List[7].."%")
+	cecho("\n "..a_s("Kinetic Res: "..List[8].."%", 30).."EM Res: "..List[9].."%")	
+	cecho("\n Price: "..List[10])
+end
+
+
+</script>
+					<eventHandlerList />
+				</Script>
+				<Script isActive="yes" isFolder="no">
+					<name>SS Display Capacitors</name>
+					<packageName></packageName>
+					<script>
+function list_capacitor_parts(Strnum)
+	local n = #starship.capacitors
+	local found = nil
+	cecho("\n")
+-- Model Number, Make, Model, Capacity, Mass, Price
+	if Strnum then
+		cecho("------------------------------------------------------------------------------\n")
+		cecho("                               Capacitor                                      \n")
+		cecho("------------------------------------------------------------------------------\n")
+		for i = 1, n do
+			if Strnum == starship.capacitors[i][1] then
+				found = true
+				display_capacitor_part(starship.capacitors[i])
+			end
+		end
+		if not found then
+			cecho("\n Capacitor ID could not be found")		
+		end
+	else
+		cecho(" Type        ID    Name                                   Mass       Price\n\n")
+		cecho("------------------------------------------------------------------------------\n")
+		for i = 1, n do
+			cecho("\n Capacitor   "..a_s(starship.capacitors[i][1], 6)..""..a_s(starship.capacitors[i][2].." "..starship.capacitors[i][3], 39)..""..a_s(starship.capacitors[i][5], 11)..""..starship.capacitors[i][6])
+		end
+	end
+	cecho("\n\n")
+end
+
+function display_capacitor_part(List)
+	cecho("\n Model Number: "..List[1])
+	cecho("\n "..a_s("Make: "..List[2], 30).."Model: "..List[3])
+	cecho("\n "..a_s("Capacity: "..List[4].." kear", 30).."Mass: "..List[5].." tons")
+	cecho("\n Price: "..List[6])
+end
+
+
+</script>
+					<eventHandlerList />
+				</Script>
+				<Script isActive="yes" isFolder="no">
+					<name>SS Display Shipsims</name>
+					<packageName></packageName>
+					<script>
+function list_shipsim_parts(Strnum)
+	local n = #starship.shipsims
+	local found = nil
+	cecho("\n")
+-- Model Number, Model, Make, Max Cycles, Halons per Cycle, Price
+	if Strnum then
+		cecho("------------------------------------------------------------------------------\n")
+		cecho("                               Shipsim                                        \n")
+		cecho("------------------------------------------------------------------------------\n")
+		for i = 1, n do
+			if Strnum == starship.shipsims[i][1] then
+				found = true
+				display_shipsim_part(starship.shipsims[i])
+			end
+		end
+		if not found then
+			cecho("\n Shipsim ID could not be found")		
+		end
+	else
+		cecho(" Type        ID    Name                              Power Usage     Price\n\n")
+		cecho("------------------------------------------------------------------------------\n")
+		for i = 1, n do
+			cecho("\n Shipsim     "..a_s(starship.shipsims[i][1], 6)..""..a_s(starship.shipsims[i][2].." "..starship.shipsims[i][3], 37)..""..a_s(starship.shipsims[i][5], 13)..""..starship.shipsims[i][6])
+		end
+	end
+	cecho("\n\n")
+end
+
+function display_shipsim_part(List)
+	cecho("\n Model Number: "..List[1])
+	cecho("\n "..a_s("Make: "..List[2], 30).."Model: "..List[3])
+	cecho("\n "..a_s("Max. Cycles: "..List[4], 30).."Power Usage: "..List[5].." halons/cycle")
+	cecho("\n Price: "..List[6])
+end
+
+
+</script>
+					<eventHandlerList />
+				</Script>
+				<Script isActive="yes" isFolder="no">
+					<name>SS Display Sensors</name>
+					<packageName></packageName>
+					<script>
+function list_sensor_parts(Strnum)
+	local n = #starship.sensors
+	local found = nil
+	cecho("\n")
+-- Model Number, Make, Model, Sensor Strength, Mass, Price
+	if Strnum then
+		cecho("------------------------------------------------------------------------------\n")
+		cecho("                               Sensor                                         \n")
+		cecho("------------------------------------------------------------------------------\n")
+		for i = 1, n do
+			if Strnum == starship.sensors[i][1] then
+				found = true
+				display_sensor_part(starship.sensors[i])
+			end
+		end
+		if not found then
+			cecho("\n Sensor ID could not be found")		
+		end		
+	else
+		cecho(" Type        ID    Name                                   Mass       Price\n\n")
+		cecho("------------------------------------------------------------------------------\n")
+		for i = 1, n do
+			cecho("\n Sensor      "..a_s(starship.sensors[i][1], 6)..""..a_s(starship.sensors[i][2].." "..starship.sensors[i][3], 39)..""..a_s(starship.sensors[i][5], 11)..""..starship.sensors[i][6])
+		end
+	end
+	cecho("\n\n")
+end
+
+function display_sensor_part(List)
+	cecho("\n Model Number: "..List[1])
+	cecho("\n "..a_s("Make: "..List[2], 30).."Model: "..List[3])
+	cecho("\n "..a_s("Strength: "..List[4], 30).."Mass: "..List[5].." tons")
+	cecho("\n Price: "..List[6])
+end
+
+
+</script>
+					<eventHandlerList />
+				</Script>
+				<Script isActive="yes" isFolder="no">
+					<name>SS Display Modules</name>
+					<packageName></packageName>
+					<script>
+function list_module_parts(Strnum)
+	local n = #starship.modules.weapons
+	local m = #starship.modules.utilities
+	local found = nil
+	cecho("\n")
+	if Strnum then
+		for i = 1, n do
+			if Strnum == starship.modules.weapons[i][1] then
+				found = true
+				cecho("------------------------------------------------------------------------------\n")
+				cecho("                               Weapon Module                                  \n")
+				cecho("------------------------------------------------------------------------------\n")
+				display_module_weapon_part(starship.modules.weapons[i])
+			end
+		end
+		for j = 1, m do
+			if Strnum == starship.modules.utilities[j][1] then
+				found = true
+				cecho("------------------------------------------------------------------------------\n")
+				cecho("                               Utility Module                                 \n")
+				cecho("------------------------------------------------------------------------------\n")
+				display_module_utility_part(starship.modules.utilities[j])
+			end
+		end
+		if not found then
+			cecho("------------------------------------------------------------------------------\n")
+			cecho("                               Modules                                        \n")
+			cecho("------------------------------------------------------------------------------\n")
+			cecho("\n Module ID could not be found")		
+		end
+	else
+		cecho(" Type        ID    Size      Name                          Price\n\n")
+		cecho("------------------------------------------------------------------------------\n")
+		for i = 1, n do
+			cecho("\n Weapon      "..a_s(starship.modules.weapons[i][1], 6)..""..a_s(starship.modules.weapons[i][3], 10)..""..a_s(starship.modules.weapons[i][2], 30)..""..starship.modules.weapons[i][13])
+		end
+		for j = 1, m do
+			cecho("\n Utility     "..a_s(starship.modules.utilities[j][1], 6)..""..a_s(starship.modules.utilities[j][3], 10)..""..a_s(starship.modules.utilities[j][2], 30)..""..starship.modules.utilities[j][7])
+		end
+	end
+	cecho("\n\n")
+end
+
+-- Model Number, Name, Size, Mass, Power Usage, Cycle Usage, Firing Speed, Weapon Damage, Reload Speed, Optimal Range, Fall-off Damage, Weapon Type, Price
+function display_module_weapon_part(List)
+	cecho("\n Model Number: "..List[1])
+	cecho("\n Name: "..List[2])
+	cecho("\n "..a_s("Size: "..string.title(List[3]), 30).."Mass: "..List[4])
+	cecho("\n "..a_s("Power Use: "..List[5].." halons", 30).."Shipsim: "..List[6].." cycles")
+	cecho("\n "..a_s("Firing speed: "..List[7].."s", 30).."Weapon damage: "..List[8])
+	cecho("\n "..a_s("Reload speed: "..List[9].."s", 30).."Optimal range: "..List[10])	
+	cecho("\n "..a_s("Fall-off: "..List[11], 30).."Weapon Type: "..string.title(List[12]))
+	cecho("\n Price: "..List[13])
+end
+
+-- Model Number, Name, Size, Mass, Power Usage, Cycle Usage, Price
+function display_module_utility_part(List)
+	cecho("\n Model Number: "..List[1])
+	cecho("\n Name: "..List[2])
+	cecho("\n "..a_s("Size: "..string.title(List[3]), 30).."Mass: "..List[4])
+	cecho("\n "..a_s("Power Use: "..List[5].." halons", 30).."Shipsim: "..List[6].." cycles")
+	cecho("\n Price: "..List[7])
+end
+
+</script>
+					<eventHandlerList />
+				</Script>
+				<Script isActive="yes" isFolder="no">
+					<name>SS Display Resource Consumption</name>
+					<packageName></packageName>
+					<script>
+function display_resources_short()
+	get_resources()
+	cecho("\n "..a_s("Power Gen. : "..starship.simulation.power.generated.." halons", 30).."Power Usage : "..starship.simulation.power.usage.." halons")
+	cecho("\n "..a_s("Cycles Gen.: "..starship.simulation.cycles.generated, 30).."Cycle Usage : "..starship.simulation.cycles.usage)
+	cecho("\n "..a_s("Capacity   : "..starship.simulation.mass.capacity, 30).."Current Mass: "..starship.simulation.mass.used)
+	cecho("\n Total Price: "..starship.simulation.price.." marks")	
+	cecho("\n")
+	display_ship_spaceworthy()	
+end
+
+function display_details_power()
+
+end
+
+function display_details_cycles()
+
+end
+
+function display_details_capacity()
+
+end
+
+function display_ship_spaceworthy()
+	local problems = {}	
+	local small = 0
+	local medium = 0
+	local large = 0
+	local string = ""
+-- Model Number, Make, Model, Size, Mass, Hull, Turn Time, Type, Capacity, Power Requirement, Max Power Output, Cycle Requirement, Small Mods, Medium Mods, Large Mods, Cost 	
+	if not starship.simulation.superstructure then
+		table.insert(problems, "Superstructure")	
+	end
+	if not starship.simulation.engine then
+		table.insert(problems, "Engine")	
+	end
+	if not starship.simulation.shield then
+		table.insert(problems, "Shield")	
+	end
+	if not starship.simulation.capacitor then
+		table.insert(problems, "Capacitor")	
+	end
+	if not starship.simulation.shipsim then
+		table.insert(problems, "Shipsim")	
+	end
+	if not starship.simulation.sensor then
+		table.insert(problems, "Sensor")	
+	end
+	if starship.simulation.mass.capacity &lt; starship.simulation.mass.used then
+		table.insert(problems, "Capacity")
+	end
+	if starship.simulation.power.generated &lt; starship.simulation.power.usage then
+		table.insert(problems, "Power")
+	end
+	if starship.simulation.cycles.generated &lt; starship.simulation.cycles.usage then
+		table.insert(problems, "Cycles")
+	end
+	if starship.simulation.superstructure then
+		if starship.simulation.superstructure[13] &lt; #starship.simulation.modules.small.weapons + #starship.simulation.modules.small.utilities then
+			table.insert(problems, "Small Mod")		
+		end
+		if starship.simulation.superstructure[14] &lt; #starship.simulation.modules.medium.weapons + #starship.simulation.modules.medium.utilities then
+			table.insert(problems, "Medium Mod")		
+		end
+		if starship.simulation.superstructure[15] &lt; #starship.simulation.modules.large.weapons + #starship.simulation.modules.large.utilities then
+			table.insert(problems, "Large Mod")		
+		end
+	end
+	string = table.concat(problems, ", ")
+	if string ~= "" then			
+		cecho("\n This ship cannot fly due to the following reasons: "..string..".")
+	else
+		cecho("\n Your ship is spaceworthy!")	
+	end
+end</script>
+					<eventHandlerList />
+				</Script>
+			</ScriptGroup>
+			<ScriptGroup isActive="yes" isFolder="yes">
+				<name>Starship Simulator Construction</name>
+				<packageName></packageName>
+				<script>
+</script>
+				<eventHandlerList />
+				<Script isActive="yes" isFolder="no">
+					<name>SS Add Components</name>
+					<packageName></packageName>
+					<script>
+function add_superstructure_part( Strnum )
+	local n = #starship.superstructures
+	local found = nil
+	for i = 1, n do
+		if Strnum == starship.superstructures[i][1] then
+			found = true
+			starship.simulation.superstructure = starship.superstructures[i]
+		end
+	end
+	if not found then
+		cecho("\n Superstructure ID could not be found")					
+	else
+		display_simulation_ship()	
+	end
+end
+
+function add_engine_part( Strnum )
+	local n = #starship.engines
+	local found = nil
+	for i = 1, n do
+		if Strnum == starship.engines[i][1] then
+			found = true
+			starship.simulation.engine = starship.engines[i]
+		end
+	end
+	if not found then
+		cecho("\n Engine ID could not be found")					
+	else
+		display_simulation_ship()	
+	end
+end
+
+function add_shield_part( Strnum )
+	local n = #starship.shields
+	local found = nil
+	for i = 1, n do
+		if Strnum == starship.shields[i][1] then
+			found = true
+			starship.simulation.shield = starship.shields[i]
+		end
+	end
+	if not found then
+		cecho("\n Shield ID could not be found")					
+	else
+		display_simulation_ship()	
+	end
+end
+
+function add_capacitor_part( Strnum )
+	local n = #starship.capacitors
+	local found = nil
+	for i = 1, n do
+		if Strnum == starship.capacitors[i][1] then
+			found = true
+			starship.simulation.capacitor = starship.capacitors[i]
+		end
+	end
+	if not found then
+		cecho("\n Capacitor ID could not be found")					
+	else
+		display_simulation_ship()	
+	end
+end
+
+function add_shipsim_part( Strnum )
+	local n = #starship.shipsims
+	local found = nil
+	for i = 1, n do
+		if Strnum == starship.shipsims[i][1] then
+			found = true
+			starship.simulation.shipsim = starship.shipsims[i]
+		end
+	end
+	if not found then
+		cecho("\n Shipsim ID could not be found")					
+	else
+		display_simulation_ship()	
+	end
+end
+
+function add_sensor_part( Strnum )
+	local n = #starship.sensors
+	local found = nil
+	for i = 1, n do
+		if Strnum == starship.sensors[i][1] then
+			found = true
+			starship.simulation.sensor = starship.sensors[i]
+		end
+	end
+	if not found then
+		cecho("\n Sensor ID could not be found")					
+	else
+		display_simulation_ship()	
+	end
+end</script>
+					<eventHandlerList />
+				</Script>
+				<Script isActive="yes" isFolder="no">
+					<name>SS Add Modules</name>
+					<packageName></packageName>
+					<script>
+-- Model Number, Make, Model, Size, Mass, Hull, Turn Time, Type, Capacity, Power Requirement, Max Power Output, Cycle Requirement, Small Mods, Medium Mods, Large Mods, Cost 	
+
+function add_module_part( Strnum )
+	local n = #starship.modules.weapons
+	local m = #starship.modules.utilities
+	local found = nil
+	for i = 1, n do
+		if Strnum == starship.modules.weapons[i][1] then
+			found = true
+			table.insert(starship.simulation.modules[starship.modules.weapons[i][3]].weapons, { true, starship.modules.weapons[i] } )
+		end
+	end
+	for j = 1, m do
+		if Strnum == starship.modules.utilities[j][1] then
+			found = true
+			table.insert(starship.simulation.modules[starship.modules.utilities[j][3]].utilities, { true, starship.modules.utilities[j] } )
+		end
+	end	
+	if not found then
+		cecho("\n Module ID could not be found")					
+	else
+		display_simulation_modules_short()
+	end
+end
+
+</script>
+					<eventHandlerList />
+				</Script>
+				<Script isActive="yes" isFolder="no">
+					<name>SS Remove Components</name>
+					<packageName></packageName>
+					<script>
+function remove_all_component_parts()
+	starship.simulation.superstructure = nil
+	starship.simulation.engine = nil
+	starship.simulation.shield = nil
+	starship.simulation.capacitor = nil
+	starship.simulation.shipsim = nil
+	starship.simulation.sensor = nil
+	display_simulation_ship()
+end
+
+function remove_superstructure_part()
+	starship.simulation.superstructure = nil
+	display_simulation_ship()	
+end
+
+function remove_engine_part()
+	starship.simulation.engine = nil
+	display_simulation_ship()	
+end
+
+function remove_shield_part()
+	starship.simulation.shield = nil
+	display_simulation_ship()	
+end
+
+function remove_capacitor_part()
+	starship.simulation.capacitor = nil
+	display_simulation_ship()	
+end
+
+function remove_shipsim_part()
+	starship.simulation.shipsim = nil
+	display_simulation_ship()	
+end
+
+function remove_sensor_part()
+	starship.simulation.sensor = nil
+	display_simulation_ship()	
+end
+</script>
+					<eventHandlerList />
+				</Script>
+				<Script isActive="yes" isFolder="no">
+					<name>SS Remove Modules</name>
+					<packageName></packageName>
+					<script>
+function remove_all_module_parts()
+	starship.simulation.modules.small = {}
+	starship.simulation.modules.small.weapons = {}
+	starship.simulation.modules.small.utilities = {}
+	starship.simulation.modules.medium = {}
+	starship.simulation.modules.medium.weapons = {}
+	starship.simulation.modules.medium.utilities = {}
+	starship.simulation.modules.large = {}
+	starship.simulation.modules.large.weapons = {}
+	starship.simulation.modules.large.utilities = {}
+	display_simulation_modules_short()	
+end
+
+function remove_module_part( Strnum )
+	local n1 = #starship.simulation.modules.small.weapons
+	local n2 = #starship.simulation.modules.medium.weapons
+	local n3 = #starship.simulation.modules.large.weapons
+	local m1 = #starship.simulation.modules.small.utilities
+	local m2 = #starship.simulation.modules.medium.utilities
+	local m3 = #starship.simulation.modules.large.utilities
+	local found = nil
+
+	if not found then	
+  	for i = 1, n1 do
+  		if Strnum == starship.simulation.modules.small.weapons[i][2][1] then
+  			found = true
+  			table.remove(starship.simulation.modules.small.weapons, i)
+  			break
+  		end		
+  	end
+	end
+	if not found then	
+  	for i = 1, n2 do
+  		if Strnum == starship.simulation.modules.medium.weapons[i][2][1] then
+  			found = true
+  			table.remove(starship.simulation.modules.medium.weapons, i)
+  			break
+  		end		
+  	end
+	end
+	if not found then	
+  	for i = 1, n3 do
+  		if Strnum == starship.simulation.modules.large.weapons[i][2][1] then
+  			found = true
+  			table.remove(starship.simulation.modules.large.weapons, i)
+  			break
+  		end		
+  	end
+	end
+	if not found then	
+  	for i = 1, m1 do
+  		if Strnum == starship.simulation.modules.small.utilities[i][2][1] then
+  			found = true
+  			table.remove(starship.simulation.modules.small.utilities, i)
+  			break
+  		end		
+  	end
+	end
+	if not found then	
+  	for i = 1, m2 do
+  		if Strnum == starship.simulation.modules.medium.utilities[i][2][1] then
+  			found = true
+  			table.remove(starship.simulation.modules.medium.utilities, i)
+  			break
+  		end		
+  	end
+	end
+	if not found then	
+  	for i = 1, m3 do
+  		if Strnum == starship.simulation.modules.large.utilities[i][2][1] then
+  			found = true
+  			table.remove(starship.simulation.modules.large.utilities, i)
+  			break
+  		end		
+  	end
+	end		
+	if not found then
+		cecho("\n Module ID could not be found")					
+	else
+		display_simulation_modules_short()	
+	end
+	
+end</script>
+					<eventHandlerList />
+				</Script>
+			</ScriptGroup>
+			<ScriptGroup isActive="yes" isFolder="yes">
+				<name>Starship Simulator Resources</name>
+				<packageName></packageName>
+				<script>-------------------------------------------------
+--         Put your Lua functions here.        --
+--                                             --
+-- Note that you can also use external Scripts --
+-------------------------------------------------
+</script>
+				<eventHandlerList />
+				<Script isActive="yes" isFolder="no">
+					<name>SS Track Resources</name>
+					<packageName></packageName>
+					<script>
+function reset_resources()
+	starship.simulation.power.generated = 0
+	starship.simulation.power.usage = 0
+	starship.simulation.mass.capacity = 0
+	starship.simulation.mass.used = 0
+	starship.simulation.cycles.generated = 0
+	starship.simulation.cycles.usage = 0
+end
+
+function get_resources()
+	get_power_total()
+	get_power_usage()
+	get_ship_capacity()
+	get_ship_mass_usage()
+	get_cycles_total()
+	get_cycles_usage()
+	get_price_total()	
+end
+
+function get_power_total()
+	if starship.simulation.engine then
+		starship.simulation.power.generated = starship.simulation.engine[4]
+	end
+end
+
+function get_power_usage()
+	starship.simulation.power.usage = 0
+	if starship.simulation.superstructure then
+		starship.simulation.power.usage = starship.simulation.power.usage + starship.simulation.superstructure[10]
+	end
+	if starship.simulation.shipsim then
+		starship.simulation.power.usage = starship.simulation.power.usage + starship.simulation.shipsim[4] * starship.simulation.shipsim[5]
+	end
+	starship.simulation.power.usage = starship.simulation.power.usage + get_power_usage_modules()
+end
+
+function get_power_usage_modules()
+	local n1 = #starship.simulation.modules.small.weapons
+	local n2 = #starship.simulation.modules.medium.weapons
+	local n3 = #starship.simulation.modules.large.weapons
+	local m1 = #starship.simulation.modules.small.utilities
+	local m2 = #starship.simulation.modules.medium.utilities
+	local m3 = #starship.simulation.modules.large.utilities		
+	local usage = 0	
+	for i = 1, n1 do
+		if starship.simulation.modules.small.weapons[i][1] then
+			usage = usage + starship.simulation.modules.small.weapons[i][2][5]
+		end
+	end
+	for i = 1, n2 do
+		if starship.simulation.modules.medium.weapons[i][1] then
+			usage = usage + starship.simulation.modules.medium.weapons[i][2][5]
+		end
+	end
+	for i = 1, n3 do
+		if starship.simulation.modules.large.weapons[i][1] then
+			usage = usage + starship.simulation.modules.large.weapons[i][2][5]
+		end
+	end
+	for i = 1, m1 do
+		if starship.simulation.modules.small.utilities[i][1] then
+			usage = usage + starship.simulation.modules.small.utilities[i][2][5]
+		end
+	end
+	for i = 1, m2 do
+		if starship.simulation.modules.medium.utilities[i][1] then
+			usage = usage + starship.simulation.modules.medium.utilities[i][2][5]
+		end
+	end
+	for i = 1, m3 do
+		if starship.simulation.modules.medium.utilities[i][1] then
+			usage = usage + starship.simulation.modules.large.utilities[i][2][5]
+		end
+	end
+	return usage
+end
+
+function get_ship_capacity()
+	if starship.simulation.superstructure then
+		starship.simulation.mass.capacity = starship.simulation.superstructure[9]
+	end
+end
+
+function get_ship_mass_usage()
+	starship.simulation.mass.used = 0
+	if starship.simulation.engine then
+		starship.simulation.mass.used = starship.simulation.mass.used + starship.simulation.engine[5]
+	end
+	if starship.simulation.shield then
+		starship.simulation.mass.used = starship.simulation.mass.used + starship.simulation.shield[5]
+	end
+	if starship.simulation.capacitor then
+		starship.simulation.mass.used = starship.simulation.mass.used + starship.simulation.capacitor[5]
+	end
+	if starship.simulation.sensor then
+		starship.simulation.mass.used = starship.simulation.mass.used + starship.simulation.sensor[5]
+	end
+	starship.simulation.mass.used = starship.simulation.mass.used + get_ship_mass_usage_modules()
+end
+
+function get_ship_mass_usage_modules()
+	local n1 = #starship.simulation.modules.small.weapons
+	local n2 = #starship.simulation.modules.medium.weapons
+	local n3 = #starship.simulation.modules.large.weapons
+	local m1 = #starship.simulation.modules.small.utilities
+	local m2 = #starship.simulation.modules.medium.utilities
+	local m3 = #starship.simulation.modules.large.utilities		
+	local usage = 0		
+	for i = 1, n1 do
+		usage = usage + starship.simulation.modules.small.weapons[i][2][4]
+	end
+	for i = 1, n2 do
+		usage = usage + starship.simulation.modules.medium.weapons[i][2][4]
+	end
+	for i = 1, n3 do
+		usage = usage + starship.simulation.modules.large.weapons[i][2][4]
+	end
+	for i = 1, m1 do
+		usage = usage + starship.simulation.modules.small.utilities[i][2][4]
+	end
+	for i = 1, m2 do
+		usage = usage + starship.simulation.modules.medium.utilities[i][2][4]
+	end
+	for i = 1, m3 do
+		usage = usage + starship.simulation.modules.large.utilities[i][2][4]
+	end
+	return usage
+end
+
+function get_cycles_total()
+	if starship.simulation.shipsim then
+		starship.simulation.cycles.generated = starship.simulation.shipsim[4]
+	end
+end
+
+function get_cycles_usage()
+	starship.simulation.cycles.usage = 0
+	if starship.simulation.superstructure then
+		starship.simulation.cycles.usage = starship.simulation.cycles.usage + starship.simulation.superstructure[12]
+	end
+	starship.simulation.cycles.usage = starship.simulation.cycles.usage + get_cycles_usage_modules()
+end
+
+function get_cycles_usage_modules()
+	local n1 = #starship.simulation.modules.small.weapons
+	local n2 = #starship.simulation.modules.medium.weapons
+	local n3 = #starship.simulation.modules.large.weapons
+	local m1 = #starship.simulation.modules.small.utilities
+	local m2 = #starship.simulation.modules.medium.utilities
+	local m3 = #starship.simulation.modules.large.utilities		
+	local usage = 0	
+	for i = 1, n1 do
+		if starship.simulation.modules.small.weapons[i][1] then
+			usage = usage + starship.simulation.modules.small.weapons[i][2][6]
+		end
+	end
+	for i = 1, n2 do
+		if starship.simulation.modules.medium.weapons[i][1] then
+			usage = usage + starship.simulation.modules.medium.weapons[i][2][6]
+		end
+	end
+	for i = 1, n3 do
+		if starship.simulation.modules.large.weapons[i][1] then
+			usage = usage + starship.simulation.modules.large.weapons[i][2][6]
+		end
+	end
+	for i = 1, m1 do
+		if starship.simulation.modules.small.utilities[i][1] then
+			usage = usage + starship.simulation.modules.small.utilities[i][2][6]
+		end
+	end
+	for i = 1, m2 do
+		if starship.simulation.modules.medium.utilities[i][1] then
+			usage = usage + starship.simulation.modules.medium.utilities[i][2][6]
+		end
+	end
+	for i = 1, m3 do
+		if starship.simulation.modules.medium.utilities[i][1] then
+			usage = usage + starship.simulation.modules.large.utilities[i][2][6]
+		end
+	end
+	return usage
+end
+
+function get_price_total()
+	starship.simulation.price = 0
+	if starship.simulation.superstructure then
+		starship.simulation.price = starship.simulation.price + starship.simulation.superstructure[16]
+	end
+	if starship.simulation.engine then
+		starship.simulation.price = starship.simulation.price + starship.simulation.engine[6]	
+	end
+	if starship.simulation.shield then
+		starship.simulation.price = starship.simulation.price + starship.simulation.shield[10]	
+	end
+	if starship.simulation.capacitor then
+		starship.simulation.price = starship.simulation.price + starship.simulation.capacitor[6]	
+	end
+	if starship.simulation.shipsim then
+		starship.simulation.price = starship.simulation.price + starship.simulation.shipsim[6]	
+	end
+	if starship.simulation.sensor then
+		starship.simulation.price = starship.simulation.price + starship.simulation.sensor[6]	
+	end
+	starship.simulation.price = starship.simulation.price + get_price_total_modules()
+end
+
+function get_price_total_modules()
+	local n1 = #starship.simulation.modules.small.weapons
+	local n2 = #starship.simulation.modules.medium.weapons
+	local n3 = #starship.simulation.modules.large.weapons
+	local m1 = #starship.simulation.modules.small.utilities
+	local m2 = #starship.simulation.modules.medium.utilities
+	local m3 = #starship.simulation.modules.large.utilities		
+	local usage = 0	
+	for i = 1, n1 do
+		usage = usage + starship.simulation.modules.small.weapons[i][2][13]
+	end
+	for i = 1, n2 do
+		usage = usage + starship.simulation.modules.medium.weapons[i][2][13]
+	end
+	for i = 1, n3 do
+		usage = usage + starship.simulation.modules.large.weapons[i][2][13]
+	end
+	for i = 1, m1 do
+		usage = usage + starship.simulation.modules.small.utilities[i][2][7]
+	end
+	for i = 1, m2 do
+		usage = usage + starship.simulation.modules.medium.utilities[i][2][7]
+	end
+	for i = 1, m3 do
+		usage = usage + starship.simulation.modules.large.utilities[i][2][7]
+	end
+	return usage
+end
+
+
+</script>
+					<eventHandlerList />
+				</Script>
+			</ScriptGroup>
+			<ScriptGroup isActive="yes" isFolder="yes">
+				<name>Starship Simulator Turn On/Off Modules</name>
+				<packageName></packageName>
+				<script></script>
+				<eventHandlerList />
+				<Script isActive="yes" isFolder="no">
+					<name>SS Powering Modules</name>
+					<packageName></packageName>
+					<script>
+
+function module_power_on( Strnum, Num )
+	local n1 = #starship.simulation.modules.small.weapons
+	local n2 = #starship.simulation.modules.medium.weapons
+	local n3 = #starship.simulation.modules.large.weapons
+	local m1 = #starship.simulation.modules.small.utilities
+	local m2 = #starship.simulation.modules.medium.utilities
+	local m3 = #starship.simulation.modules.large.utilities
+	local found = nil
+	local num = 0
+
+	display(num &lt; Num)
+
+	if not found then
+  	for i = 1, n1 do
+  		if Strnum == starship.simulation.modules.small.weapons[i][2][1] and num &lt; Num then
+  			num = num + 1
+				starship.simulation.modules.small.weapons[i][1] = true
+			elseif Strnum == starship.simulation.modules.small.weapons[i][2][1] then
+				starship.simulation.modules.small.weapons[i][1] = false				
+  		end
+  	end
+	end
+	if not found then
+  	for i = 1, n2 do
+  		if Strnum == starship.simulation.modules.medium.weapons[i][2][1] and num &lt; Num then
+  			num = num + 1
+				starship.simulation.modules.medium.weapons[i][1] = true
+			elseif Strnum == starship.simulation.modules.medium.weapons[i][2][1] then
+				starship.simulation.modules.medium.weapons[i][1] = false				
+  		end
+  	end
+	end
+	if not found then
+  	for i = 1, n3 do
+  		if Strnum == starship.simulation.modules.large.weapons[i][2][1] and num &lt; Num then
+  			num = num + 1
+				starship.simulation.modules.large.weapons[i][1] = true
+			elseif Strnum == starship.simulation.modules.large.weapons[i][2][1] then
+				starship.simulation.modules.large.weapons[i][1] = false				
+  		end
+  	end
+	end
+	if not found then
+  	for i = 1, m1 do
+  		if Strnum == starship.simulation.modules.small.utilities[i][2][1] and num &lt; Num then
+  			num = num + 1
+				starship.simulation.modules.small.utilities[i][1] = true
+			elseif Strnum == starship.simulation.modules.small.utilities[i][2][1] then
+				starship.simulation.modules.small.utilities[i][1] = false				
+  		end
+  	end
+	end
+	if not found then
+  	for i = 1, m2 do
+  		if Strnum == starship.simulation.modules.medium.utilities[i][2][1] and num &lt; Num then
+  			num = num + 1
+				starship.simulation.modules.medium.utilities[i][1] = true
+			elseif Strnum == starship.simulation.modules.medium.utilities[i][2][1] then
+				starship.simulation.modules.medium.utilities[i][1] = false				
+  		end
+  	end
+	end
+	if not found then
+  	for i = 1, m3 do
+  		if Strnum == starship.simulation.modules.large.utilities[i][2][1] and num &lt; Num then
+  			num = num + 1
+				starship.simulation.modules.large.utilities[i][1] = true
+			elseif Strnum == starship.simulation.modules.large.utilities[i][2][1] then
+				starship.simulation.modules.large.utilities[i][1] = false				
+  		end
+  	end
+	end
+	if not found and num &lt; Num then
+		cecho("\n Module ID could not be found, or too many modules were attempted to be powered. If module ID exists, then all modules of this ID are turned on.")	
+	else
+		display_simulation_modules_short()
+		cecho("\n Modules successfully turned on, and others of this type are now off")	
+	end
+	cecho("\n")	
+end</script>
+					<eventHandlerList />
+				</Script>
+			</ScriptGroup>
+		</ScriptGroup>
+	</ScriptPackage>
+	<KeyPackage />
+	<VariablePackage>
+		<HiddenVariables />
+	</VariablePackage>
+</MudletPackage>
