@@ -1568,41 +1568,41 @@ starship.modules.utilities =
 					<packageName></packageName>
 					<script>
 function display_simulation_ship()
-	cecho("\n\n------------------------------------------------------------------------------\n")
-	cecho("                               Superstructure                                 \n")
-	cecho("------------------------------------------------------------------------------\n")
+	decho("\n\n&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
+	decho("&lt;0,153,204&gt;                               Superstructure                                 \n")
+	decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
 	display_simulation_superstructure()
-	cecho("\n------------------------------------------------------------------------------\n")
-	cecho("                               Engine                                         \n")
-	cecho("------------------------------------------------------------------------------\n")
+	decho("&lt;102,0,153&gt;\n------------------------------------------------------------------------------\n")
+	decho("&lt;0,153,204&gt;                               Engine                                         \n")
+	decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
 	display_simulation_engine()
-	cecho("\n------------------------------------------------------------------------------\n")
-	cecho("                               Shield                                         \n")
-	cecho("------------------------------------------------------------------------------\n")
+	decho("&lt;102,0,153&gt;\n------------------------------------------------------------------------------\n")
+	decho("&lt;0,153,204&gt;                               Shield                                         \n")
+	decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
 	display_simulation_shield()
-	cecho("\n------------------------------------------------------------------------------\n")
-	cecho("                               Capacitor                                      \n")
-	cecho("------------------------------------------------------------------------------\n")	
+	decho("&lt;102,0,153&gt;\n------------------------------------------------------------------------------\n")
+	decho("&lt;0,153,204&gt;                               Capacitor                                      \n")
+	decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")	
 	display_simulation_capacitor()
-	cecho("\n------------------------------------------------------------------------------\n")
-	cecho("                               Shipsim                                        \n")
-	cecho("------------------------------------------------------------------------------\n")
+	decho("&lt;102,0,153&gt;\n------------------------------------------------------------------------------\n")
+	decho("&lt;0,153,204&gt;                               Shipsim                                        \n")
+	decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
 	display_simulation_shipsim()
-	cecho("\n------------------------------------------------------------------------------\n")
-	cecho("                               Sensor                                         \n")
-	cecho("------------------------------------------------------------------------------\n")
+	decho("&lt;102,0,153&gt;\n------------------------------------------------------------------------------\n")
+	decho("&lt;0,153,204&gt;                               Sensor                                         \n")
+	decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
 	display_simulation_sensor()
-	cecho("\n------------------------------------------------------------------------------\n")
-	cecho("                               Resources                                        \n")
-	cecho("------------------------------------------------------------------------------\n")
+	decho("\n&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
+	decho("&lt;0,153,204&gt;                               Resources                                        \n")
+	decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
 	display_resources_short()
-	cecho("\n\n")
+	echo("\n\n")
 end
 
 function display_simulation_superstructure()
 	if starship.simulation.superstructure then
 		display_superstructure_part(starship.simulation.superstructure)
-		cecho("\n")
+		echo("\n")
 	else
 		cecho("\n Superstructure has not been added yet.\n")					
 	end
@@ -1654,15 +1654,15 @@ function display_simulation_sensor()
 end
 
 function display_simulation_modules_short()
-	cecho("\n------------------------------------------------------------------------------\n")
-	cecho("                               Modules                                          \n")
-	cecho("------------------------------------------------------------------------------\n\n")
-	cecho(" Size      ID    Type        Name\n\n")
-	cecho("------------------------------------------------------------------------------\n")
+	decho("&lt;102,0,153&gt;\n------------------------------------------------------------------------------\n")
+	decho("&lt;0,153,204&gt;                               Modules                                          \n")
+	decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n\n")
+	decho("&lt;0,153,204&gt; Size      ID    Type        Name\n\n")
+	decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
 	display_simulation_modules_small_short()
 	display_simulation_modules_medium_short()
 	display_simulation_modules_large_short()
-	cecho("\n\n")
+	echo("\n\n")
 end
 
 -- Separate from main components
@@ -1731,14 +1731,14 @@ function display_simulation_modules()
 	local m2 = #starship.simulation.modules.medium.utilities
 	local m3 = #starship.simulation.modules.large.utilities
 	if n1 + n2 + n3 + m1 + m2 + m3 == 0 then
-		cecho("------------------------------------------------------------------------------\n")
-		cecho("                               Modules                                        \n")
-		cecho("------------------------------------------------------------------------------\n")
+		decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
+		decho("&lt;0,153,204&gt;                               Modules                                        \n")
+		decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
 		cecho("\n No modules have been installed.")			
 	else
-		cecho("------------------------------------------------------------------------------\n")
-		cecho("                               Modules                                        \n")
-		cecho("------------------------------------------------------------------------------\n")
+		decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
+		decho("&lt;0,153,204&gt;                               Modules                                        \n")
+		decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
 		display_simulation_modules_small()
 		display_simulation_modules_medium()
 		display_simulation_modules_large()
@@ -1792,9 +1792,9 @@ function list_superstructure_parts(Strnum)
 	cecho("\n")
 -- Model Number, Make, Model, Size, Mass, Hull, Turn Time, Type, Capacity, Power Requirement, Max Power Output, Cycle Requirement, Small Mods, Medium Mods, Large Mods, Cost 	
 	if Strnum then
-		cecho("------------------------------------------------------------------------------\n")
-		cecho("                               Superstructure                                 \n")
-		cecho("------------------------------------------------------------------------------\n")
+		decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
+		decho("&lt;0,153,204&gt;                               Superstructure                                 \n")
+		decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
 
 		for i = 1, n do
 			if Strnum == starship.superstructures[i][1] then
@@ -1806,8 +1806,8 @@ function list_superstructure_parts(Strnum)
 			cecho("\n Superstructure ID could not be found")
 		end
 	else
-		cecho(" ID    Model               Name                               Price\n\n")
-		cecho("---------------------------------------------------------------------------------------\n")
+		decho("&lt;0,153,204&gt; ID    Model               Name                               Price\n\n")
+		decho("&lt;102,0,153&gt;---------------------------------------------------------------------------------------\n")
 		for i = 1, n do
 			cecho("\n "..a_s(starship.superstructures[i][1], 6)..""..a_s(starship.superstructures[i][8], 20)..""..a_s(starship.superstructures[i][2].." "..starship.superstructures[i][3], 35)..""..starship.superstructures[i][16])
 		end
@@ -1816,15 +1816,15 @@ function list_superstructure_parts(Strnum)
 end
 
 function display_superstructure_part(List)
-	cecho("\n Model Number: "..List[1])
-	cecho("\n "..a_s("Make: "..List[2], 30).."Model: "..List[3])
-	cecho("\n "..a_s("Size: "..List[4], 30).."Mass: "..List[5].." tons")
-	cecho("\n "..a_s("Hull: "..List[6].." dam.", 30).."Turn Time: "..List[7])
-	cecho("\n "..a_s("Type: "..List[8], 30).."Capacity: "..List[9].." tons")
-	cecho("\n "..a_s("Min. Power: "..List[10].." halons", 30).."Max Power: "..List[11].." halons")
-	cecho("\n "..a_s("Min. Cycles: "..List[12], 30).."Small: "..List[13])				
-	cecho("\n "..a_s("Medium: "..List[14], 30).."Large: "..List[15])
-	cecho("\n Price: "..List[16])
+	decho("\n&lt;128,128,0&gt; Model Number: &lt;192,192,192&gt;"..List[1])
+	decho("\n&lt;128,128,0&gt; "..a_s("Make: &lt;192,192,192&gt;"..List[2], 43).."&lt;128,128,0&gt;Model: &lt;192,192,192&gt;"..List[3])
+	decho("\n&lt;128,128,0&gt; "..a_s("Size: &lt;192,192,192&gt;"..List[4], 43).."&lt;128,128,0&gt;Mass: &lt;192,192,192&gt;"..List[5].." tons")
+	decho("\n&lt;128,128,0&gt; "..a_s("Hull: &lt;192,192,192&gt;"..List[6].." dam.", 43).."&lt;128,128,0&gt;Turn Time: &lt;192,192,192&gt;"..List[7])
+	decho("\n&lt;128,128,0&gt; "..a_s("Type: &lt;192,192,192&gt;"..List[8], 43).."&lt;128,128,0&gt;Capacity: &lt;192,192,192&gt;"..List[9].." tons")
+	decho("\n&lt;128,128,0&gt; "..a_s("Min. Power: &lt;192,192,192&gt;"..List[10].." halons", 43).."&lt;128,128,0&gt;Max Power: &lt;192,192,192&gt;"..List[11].." halons")
+	decho("\n&lt;128,128,0&gt; "..a_s("Min. Cycles: &lt;192,192,192&gt;"..List[12], 43).."&lt;128,128,0&gt;Small: &lt;192,192,192&gt;"..List[13])				
+	decho("\n&lt;128,128,0&gt; "..a_s("Medium: &lt;192,192,192&gt;"..List[14], 43).."&lt;128,128,0&gt;Large: &lt;192,192,192&gt;"..List[15])
+	decho("\n&lt;128,128,0&gt; Price: &lt;192,192,192&gt;"..List[16])
 end
 
 </script>
@@ -1840,9 +1840,9 @@ function list_engine_parts(Strnum)
 	cecho("\n")
 -- Model Number, Make, Model, Output, Mass, Price
 	if Strnum then
-		cecho("------------------------------------------------------------------------------\n")
-		cecho("                               Engine                                         \n")
-		cecho("------------------------------------------------------------------------------\n")
+		decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
+		decho("&lt;0,153,204&gt;                               Engine                                         \n")
+		decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
 
 		for i = 1, n do
 			if Strnum == starship.engines[i][1] then
@@ -1854,20 +1854,20 @@ function list_engine_parts(Strnum)
 			cecho("\n Engine ID could not be found")		
 		end
 	else
-		cecho(" Type      ID    Name                            Output     Mass       Price\n\n")
-		cecho("---------------------------------------------------------------------------------------\n")
+		decho("&lt;0,153,204&gt; Type      ID    Name                            Output     Mass       Price\n\n")
+		decho("&lt;102,0,153&gt;---------------------------------------------------------------------------------------\n")
 		for i = 1, n do
 			cecho("\n Engine    "..a_s(starship.engines[i][1], 6)..""..a_s(starship.engines[i][2].." "..starship.engines[i][3], 32)..""..a_s(starship.engines[i][4], 11)..""..a_s(starship.engines[i][5], 11)..""..starship.engines[i][6])
 		end
 	end
-	cecho("\n\n")
+	echo("\n\n")
 end
 
 function display_engine_part(List)
-	cecho("\n Model Number: "..List[1])
-	cecho("\n "..a_s("Make: "..List[2], 30).."Model: "..List[3])
-	cecho("\n "..a_s("Output: "..List[4].." halons", 30).."Mass: "..List[5].." tons")
-	cecho("\n Price: "..List[6])
+	decho("&lt;128,128,0&gt;\n Model Number: &lt;192,192,192&gt;"..List[1])
+	decho("&lt;128,128,0&gt;\n "..a_s("Make: &lt;192,192,192&gt;"..List[2], 43).."&lt;128,128,0&gt;Model: &lt;192,192,192&gt;"..List[3])
+	decho("&lt;128,128,0&gt;\n "..a_s("Output: &lt;192,192,192&gt;"..List[4].." halons", 43).."&lt;128,128,0&gt;Mass: &lt;192,192,192&gt;"..List[5].." tons")
+	decho("&lt;128,128,0&gt;\n Price: &lt;192,192,192&gt;"..List[6])
 end
 
 
@@ -1884,9 +1884,9 @@ function list_shield_parts(Strnum)
 	cecho("\n")
 -- Model Number, Make, Model, Strength, Mass, Recharge, Thermal Res, Kinetic Res, EM Res, Price
 	if Strnum then
-		cecho("------------------------------------------------------------------------------\n")
-		cecho("                               Shield                                         \n")
-		cecho("------------------------------------------------------------------------------\n")
+		decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
+		decho("&lt;0,153,204&gt;                               Shield                                         \n")
+		decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
 
 		for i = 1, n do
 			if Strnum == starship.shields[i][1] then
@@ -1898,8 +1898,8 @@ function list_shield_parts(Strnum)
 			cecho("\n Shield ID could not be found")		
 		end
 	else
-		cecho(" Type     ID    Name                                 Shields    Mass       Price\n\n")
-		cecho("---------------------------------------------------------------------------------------\n")
+		decho("&lt;0,153,204&gt; Type     ID    Name                                 Shields    Mass       Price\n\n")
+		decho("&lt;102,0,153&gt;---------------------------------------------------------------------------------------\n")
 		for i = 1, n do
 			cecho("\n Shield   "..a_s(starship.shields[i][1], 6)..""..a_s(starship.shields[i][2].." "..starship.shields[i][3], 37)..""..a_s(starship.shields[i][4], 11)..""..a_s(starship.shields[i][5], 11)..""..starship.shields[i][10])
 		end
@@ -1908,12 +1908,12 @@ function list_shield_parts(Strnum)
 end
 
 function display_shield_part(List)
-	cecho("\n Model Number: "..List[1])
-	cecho("\n "..a_s("Make: "..List[2], 30).."Model: "..List[3])
-	cecho("\n "..a_s("Strength: "..List[4].." dam.", 30).."Mass: "..List[5].." tons")
-	cecho("\n "..a_s("Recharge: "..List[6].."s", 30).."Thermal Res: "..List[7].."%")
-	cecho("\n "..a_s("Kinetic Res: "..List[8].."%", 30).."EM Res: "..List[9].."%")	
-	cecho("\n Price: "..List[10])
+	decho("&lt;128,128,0&gt;\n Model Number: &lt;192,192,192&gt;"..List[1])
+	decho("&lt;128,128,0&gt;\n "..a_s("Make: &lt;192,192,192&gt;"..List[2], 43).."&lt;128,128,0&gt;Model: &lt;192,192,192&gt;"..List[3])
+	decho("&lt;128,128,0&gt;\n "..a_s("Strength: &lt;192,192,192&gt;"..List[4].." dam.", 43).."&lt;128,128,0&gt;Mass: &lt;192,192,192&gt;"..List[5].." tons")
+	decho("&lt;128,128,0&gt;\n "..a_s("Recharge: &lt;192,192,192&gt;"..List[6].."s", 43).."&lt;128,128,0&gt;Thermal Res: &lt;192,192,192&gt;"..List[7].."%")
+	decho("&lt;128,128,0&gt;\n "..a_s("Kinetic Res: &lt;192,192,192&gt;"..List[8].."%", 43).."&lt;128,128,0&gt;EM Res: &lt;192,192,192&gt;"..List[9].."%")	
+	decho("&lt;128,128,0&gt;\n Price: &lt;192,192,192&gt;"..List[10])
 end
 
 
@@ -1930,9 +1930,9 @@ function list_capacitor_parts(Strnum)
 	cecho("\n")
 -- Model Number, Make, Model, Capacity, Mass, Price
 	if Strnum then
-		cecho("------------------------------------------------------------------------------\n")
-		cecho("                               Capacitor                                      \n")
-		cecho("------------------------------------------------------------------------------\n")
+		decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
+		decho("&lt;0,153,204&gt;                               Capacitor                                      \n")
+		decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
 		for i = 1, n do
 			if Strnum == starship.capacitors[i][1] then
 				found = true
@@ -1943,8 +1943,8 @@ function list_capacitor_parts(Strnum)
 			cecho("\n Capacitor ID could not be found")		
 		end
 	else
-		cecho(" Type       ID    Name                                 Kears        Mass       Price\n\n")
-		cecho("---------------------------------------------------------------------------------------\n")
+		decho("&lt;0,153,204&gt; Type       ID    Name                                 Kears        Mass       Price\n\n")
+		decho("&lt;102,0,153&gt;---------------------------------------------------------------------------------------\n")
 		for i = 1, n do
 			cecho("\n Capacitor  "..a_s(starship.capacitors[i][1], 6)..""..a_s(starship.capacitors[i][2].." "..starship.capacitors[i][3], 37)..""..a_s(starship.shields[i][4], 11)..""..a_s(starship.capacitors[i][5], 11)..""..starship.capacitors[i][6])
 		end
@@ -1953,10 +1953,10 @@ function list_capacitor_parts(Strnum)
 end
 
 function display_capacitor_part(List)
-	cecho("\n Model Number: "..List[1])
-	cecho("\n "..a_s("Make: "..List[2], 30).."Model: "..List[3])
-	cecho("\n "..a_s("Capacity: "..List[4].." kear", 30).."Mass: "..List[5].." tons")
-	cecho("\n Price: "..List[6])
+	decho("&lt;128,128,0&gt;\n Model Number: &lt;192,192,192&gt;"..List[1])
+	decho("&lt;128,128,0&gt;\n "..a_s("Make: &lt;192,192,192&gt;"..List[2], 43).."&lt;128,128,0&gt;Model: &lt;192,192,192&gt;"..List[3])
+	decho("&lt;128,128,0&gt;\n "..a_s("Capacity: &lt;192,192,192&gt;"..List[4].." kear", 43).."&lt;128,128,0&gt;Mass: &lt;192,192,192&gt;"..List[5].." tons")
+	decho("&lt;128,128,0&gt;\n Price: &lt;192,192,192&gt;"..List[6])
 end
 
 
@@ -1973,9 +1973,9 @@ function list_shipsim_parts(Strnum)
 	cecho("\n")
 -- Model Number, Model, Make, Max Cycles, Halons per Cycle, Price
 	if Strnum then
-		cecho("------------------------------------------------------------------------------\n")
-		cecho("                               Shipsim                                        \n")
-		cecho("------------------------------------------------------------------------------\n")
+		decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
+		decho("&lt;0,153,204&gt;                               Shipsim                                        \n")
+		decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
 		for i = 1, n do
 			if Strnum == starship.shipsims[i][1] then
 				found = true
@@ -1986,8 +1986,8 @@ function list_shipsim_parts(Strnum)
 			cecho("\n Shipsim ID could not be found")		
 		end
 	else
-		cecho(" Type      ID    Name                           Cycles    Hal/cyc     Price\n\n")
-		cecho("---------------------------------------------------------------------------------------\n")
+		decho("&lt;0,153,204&gt; Type      ID    Name                           Cycles    Hal/cyc     Price\n\n")
+		decho("&lt;102,0,153&gt;---------------------------------------------------------------------------------------\n")
 		for i = 1, n do
 			cecho("\n Shipsim   "..a_s(starship.shipsims[i][1], 6)..""..a_s(starship.shipsims[i][2].." "..starship.shipsims[i][3], 32)..""..a_s(starship.shipsims[i][4], 11)..""..a_s(starship.shipsims[i][5], 10)..""..starship.shipsims[i][6])
 		end
@@ -1996,10 +1996,10 @@ function list_shipsim_parts(Strnum)
 end
 
 function display_shipsim_part(List)
-	cecho("\n Model Number: "..List[1])
-	cecho("\n "..a_s("Make: "..List[2], 30).."Model: "..List[3])
-	cecho("\n "..a_s("Max. Cycles: "..List[4], 30).."Power Usage: "..List[5].." halons/cycle")
-	cecho("\n Price: "..List[6])
+	decho("&lt;128,128,0&gt;\n Model Number: &lt;192,192,192&gt;"..List[1])
+	decho("&lt;128,128,0&gt;\n "..a_s("Make: &lt;192,192,192&gt;"..List[2], 43).."&lt;128,128,0&gt;Model: &lt;192,192,192&gt;"..List[3])
+	decho("&lt;128,128,0&gt;\n "..a_s("Max. Cycles: &lt;192,192,192&gt;"..List[4], 43).."&lt;128,128,0&gt;Power Usage: &lt;192,192,192&gt;"..List[5].." halons/cycle")
+	decho("&lt;128,128,0&gt;\n Price: &lt;192,192,192&gt;"..List[6])
 end
 
 
@@ -2016,9 +2016,9 @@ function list_sensor_parts(Strnum)
 	cecho("\n")
 -- Model Number, Make, Model, Sensor Strength, Mass, Price
 	if Strnum then
-		cecho("------------------------------------------------------------------------------\n")
-		cecho("                               Sensor                                         \n")
-		cecho("------------------------------------------------------------------------------\n")
+		decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
+		decho("&lt;0,153,204&gt;                               Sensor                                         \n")
+		decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
 		for i = 1, n do
 			if Strnum == starship.sensors[i][1] then
 				found = true
@@ -2029,8 +2029,8 @@ function list_sensor_parts(Strnum)
 			cecho("\n Sensor ID could not be found")		
 		end		
 	else
-		cecho(" Type     ID    Name                          Strength     Mass      Price\n\n")
-		cecho("---------------------------------------------------------------------------------------\n")
+		decho("&lt;0,153,204&gt; Type     ID    Name                          Strength     Mass      Price\n\n")
+		decho("&lt;102,0,153&gt;---------------------------------------------------------------------------------------\n")
 		for i = 1, n do
 			cecho("\n Sensor   "..a_s(starship.sensors[i][1], 6)..""..a_s(starship.sensors[i][2].." "..starship.sensors[i][3], 33)..""..a_s(starship.sensors[i][4], 10)..""..a_s(starship.sensors[i][5], 10)..""..starship.sensors[i][6])
 		end
@@ -2039,10 +2039,10 @@ function list_sensor_parts(Strnum)
 end
 
 function display_sensor_part(List)
-	cecho("\n Model Number: "..List[1])
-	cecho("\n "..a_s("Make: "..List[2], 30).."Model: "..List[3])
-	cecho("\n "..a_s("Strength: "..List[4], 30).."Mass: "..List[5].." tons")
-	cecho("\n Price: "..List[6])
+	decho("&lt;128,128,0&gt;\n Model Number: &lt;192,192,192&gt;"..List[1])
+	decho("&lt;128,128,0&gt;\n "..a_s("Make: &lt;192,192,192&gt;"..List[2], 43).."&lt;128,128,0&gt;Model: &lt;192,192,192&gt;"..List[3])
+	decho("&lt;128,128,0&gt;\n "..a_s("Strength: &lt;192,192,192&gt;"..List[4], 43).."&lt;128,128,0&gt;Mass: &lt;192,192,192&gt;"..List[5].." tons")
+	decho("&lt;128,128,0&gt;\n Price: &lt;192,192,192&gt;"..List[6])
 end
 
 
@@ -2062,30 +2062,30 @@ function list_module_parts(Strnum)
 		for i = 1, n do
 			if Strnum == starship.modules.weapons[i][1] then
 				found = true
-				cecho("------------------------------------------------------------------------------\n")
-				cecho("                               Weapon Module                                  \n")
-				cecho("------------------------------------------------------------------------------\n")
+				decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
+				decho("&lt;0,153,204&gt;                               Weapon Module                                  \n")
+				decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
 				display_module_weapon_part(starship.modules.weapons[i])
 			end
 		end
 		for j = 1, m do
 			if Strnum == starship.modules.utilities[j][1] then
 				found = true
-				cecho("------------------------------------------------------------------------------\n")
-				cecho("                               Utility Module                                 \n")
-				cecho("------------------------------------------------------------------------------\n")
+				decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
+				decho("&lt;0,153,204&gt;                               Utility Module                                 \n")
+				decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
 				display_module_utility_part(starship.modules.utilities[j])
 			end
 		end
 		if not found then
-			cecho("------------------------------------------------------------------------------\n")
-			cecho("                               Modules                                        \n")
-			cecho("------------------------------------------------------------------------------\n")
+			decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
+			decho("&lt;0,153,204&gt;                               Modules                                        \n")
+			decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
 			cecho("\n Module ID could not be found")		
 		end
 	else
-		cecho(" Type        ID    Size      Name                          Price\n\n")
-		cecho("---------------------------------------------------------------------------------------\n")
+		decho("&lt;0,153,204&gt; Type        ID    Size      Name                          Price\n\n")
+		decho("&lt;102,0,153&gt;---------------------------------------------------------------------------------------\n")
 		for i = 1, n do
 			cecho("\n Weapon      "..a_s(starship.modules.weapons[i][1], 6)..""..a_s(starship.modules.weapons[i][3], 10)..""..a_s(starship.modules.weapons[i][2], 30)..""..starship.modules.weapons[i][13])
 		end
@@ -2098,23 +2098,23 @@ end
 
 -- Model Number, Name, Size, Mass, Power Usage, Cycle Usage, Firing Speed, Weapon Damage, Reload Speed, Optimal Range, Fall-off Damage, Weapon Type, Price
 function display_module_weapon_part(List)
-	cecho("\n Model Number: "..List[1])
-	cecho("\n Name: "..List[2])
-	cecho("\n "..a_s("Size: "..string.title(List[3]), 30).."Mass: "..List[4])
-	cecho("\n "..a_s("Power Use: "..List[5].." halons", 30).."Shipsim: "..List[6].." cycles")
-	cecho("\n "..a_s("Firing speed: "..List[7].."s", 30).."Weapon damage: "..List[8])
-	cecho("\n "..a_s("Reload speed: "..List[9].."s", 30).."Optimal range: "..List[10])	
-	cecho("\n "..a_s("Fall-off: "..List[11], 30).."Weapon Type: "..string.title(List[12]))
-	cecho("\n Price: "..List[13])
+	decho("&lt;128,128,0&gt;\n Model Number: &lt;192,192,192&gt;"..List[1])
+	decho("&lt;128,128,0&gt;\n Name: &lt;192,192,192&gt;"..List[2])
+	decho("&lt;128,128,0&gt;\n "..a_s("Size: &lt;192,192,192&gt;"..string.title(List[3]), 43).."&lt;128,128,0&gt;Mass: &lt;192,192,192&gt;"..List[4])
+	decho("&lt;128,128,0&gt;\n "..a_s("Power Use: &lt;192,192,192&gt;"..List[5].." halons", 43).."&lt;128,128,0&gt;Shipsim: &lt;192,192,192&gt;"..List[6].." cycles")
+	decho("&lt;128,128,0&gt;\n "..a_s("Firing speed: &lt;192,192,192&gt;"..List[7].."s", 43).."&lt;128,128,0&gt;Weapon damage: &lt;192,192,192&gt;"..List[8])
+	decho("&lt;128,128,0&gt;\n "..a_s("Reload speed: &lt;192,192,192&gt;"..List[9].."s", 43).."&lt;128,128,0&gt;Optimal range: &lt;192,192,192&gt;"..List[10])	
+	decho("&lt;128,128,0&gt;\n "..a_s("Fall-off: &lt;192,192,192&gt;"..List[11], 43).."&lt;128,128,0&gt;Weapon Type: &lt;192,192,192&gt;"..string.title(List[12]))
+	decho("&lt;128,128,0&gt;\n Price: &lt;192,192,192&gt;"..List[13])
 end
 
 -- Model Number, Name, Size, Mass, Power Usage, Cycle Usage, Price
 function display_module_utility_part(List)
-	cecho("\n Model Number: "..List[1])
-	cecho("\n Name: "..List[2])
-	cecho("\n "..a_s("Size: "..string.title(List[3]), 30).."Mass: "..List[4])
-	cecho("\n "..a_s("Power Use: "..List[5].." halons", 30).."Shipsim: "..List[6].." cycles")
-	cecho("\n Price: "..List[7])
+	decho("&lt;128,128,0&gt;\n Model Number: &lt;192,192,192&gt;"..List[1])
+	decho("&lt;128,128,0&gt;\n Name: &lt;192,192,192&gt;"..List[2])
+	decho("&lt;128,128,0&gt;\n "..a_s("Size: &lt;192,192,192&gt;"..string.title(List[3]), 43).."&lt;128,128,0&gt;Mass: &lt;192,192,192&gt;"..List[4])
+	decho("&lt;128,128,0&gt;\n "..a_s("Power Use: &lt;192,192,192&gt;"..List[5].." halons", 43).."&lt;128,128,0&gt;Shipsim: &lt;192,192,192&gt;"..List[6].." cycles")
+	decho("&lt;128,128,0&gt;\n Price: &lt;192,192,192&gt;"..List[7])
 end
 
 </script>
@@ -2126,11 +2126,11 @@ end
 					<script>
 function display_resources_short()
 	get_resources()
-	cecho("\n "..a_s("Power Gen. : "..starship.simulation.power.generated.." halons", 30).."Power Usage : "..starship.simulation.power.usage.." halons")
-	cecho("\n "..a_s("Cycles Gen.: "..starship.simulation.cycles.generated, 30).."Cycle Usage : "..starship.simulation.cycles.usage)
-	cecho("\n "..a_s("Capacity   : "..starship.simulation.mass.capacity, 30).."Current Mass: "..starship.simulation.mass.used)
-	cecho("\n Total Price: "..starship.simulation.price.." marks")	
-	cecho("\n")
+	decho("&lt;128,128,0&gt;\n "..a_s("Power Gen. : &lt;192,192,192&gt;"..starship.simulation.power.generated.." halons", 43).."&lt;128,128,0&gt;Power Usage : &lt;192,192,192&gt;"..starship.simulation.power.usage.." halons")
+	decho("&lt;128,128,0&gt;\n "..a_s("Cycles Gen.: &lt;192,192,192&gt;"..starship.simulation.cycles.generated, 43).."&lt;128,128,0&gt;Cycle Usage : &lt;192,192,192&gt;"..starship.simulation.cycles.usage)
+	decho("&lt;128,128,0&gt;\n "..a_s("Capacity   : &lt;192,192,192&gt;"..starship.simulation.mass.capacity, 43).."&lt;128,128,0&gt;Current Mass: &lt;192,192,192&gt;"..starship.simulation.mass.used)
+	decho("&lt;128,128,0&gt;\n Total Price: &lt;192,192,192&gt;"..starship.simulation.price.." marks")	
+	echo("\n")
 	display_ship_spaceworthy()	
 end
 
@@ -2193,9 +2193,9 @@ function display_ship_spaceworthy()
 	end
 	string = table.concat(problems, ", ")
 	if string ~= "" then			
-		cecho("\n This ship cannot fly due to the following reasons: "..string..".")
+		decho("&lt;0,153,204&gt;\n This ship cannot fly due to the following reasons:\n    &lt;192,192,192&gt;"..string..".")
 	else
-		cecho("\n Your ship is spaceworthy!")	
+		decho("&lt;0,153,204&gt;\n Your ship is spaceworthy!")	
 	end
 end</script>
 					<eventHandlerList />
@@ -2823,7 +2823,7 @@ end</script>
 				</Script>
 			</ScriptGroup>
 			<ScriptGroup isActive="yes" isFolder="yes">
-				<name>Beauty Functions</name>
+				<name>Associated Functions</name>
 				<packageName></packageName>
 				<script>-------------------------------------------------
 --         Put your Lua functions here.        --
@@ -2843,6 +2843,55 @@ function a_s( Str, max )
 		wspace = wspace.." "
 	end
 	return string.cut( Str..""..wspace, max)
+end</script>
+					<eventHandlerList />
+				</Script>
+				<Script isActive="no" isFolder="no">
+					<name>Quicksort List</name>
+					<packageName></packageName>
+					<script>
+
+
+
+function quicksort_List( List, Low, High )
+
+	if Low &lt; High then
+	
+		local pi = partition_array( List, Low, High )
+
+		quicksort_List( List, Low, pi - 1)
+		quicksort_List( List, pi + 1, High )
+		
+	end	
+
+end
+
+
+
+function partition_array( List, Low, High )
+
+	local pivot = tonumber(List[High][6])
+	local i = Low - 1
+	local temp1
+	local temp2
+	
+	for j = Low, High - 1 do
+		if tonumber(List[j][6]) &lt;= pivot then
+			i = i + 1
+			temp1 = List[i]
+			temp2 = List[j]
+			List[i] = temp2
+			List[j] = temp1
+		end
+	end
+
+	temp1 = List[i + 1]
+	temp2 = List[High]
+	List[i + 1] = temp2
+	List[High] = temp1
+
+	return i + 1
+
 end</script>
 					<eventHandlerList />
 				</Script>
