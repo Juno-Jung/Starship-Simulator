@@ -89,7 +89,7 @@ end
 				<regex>^ss list (\w+)$</regex>
 			</Alias>
 			<Alias isActive="yes" isFolder="no">
-				<name>List Specific Component/Module</name>
+				<name>Sorted List, or Specific Component/Module</name>
 				<script>if matches[2] == "module" or matches[2] == "modules" or matches[2] == "mod" then
 	list_module_parts(matches[3])
 elseif matches[2] == "superstructure" or matches[2] == "superstructures" or matches[2] == "ss" then
@@ -110,7 +110,7 @@ end
 </script>
 				<command></command>
 				<packageName></packageName>
-				<regex>^ss list (\w+) (\d+)$</regex>
+				<regex>^ss list (\w+) (\w+)$</regex>
 			</Alias>
 			<Alias isActive="yes" isFolder="no">
 				<name>Clear All Modules</name>
@@ -234,8 +234,8 @@ starship.simulation.modules.medium.utilities = {}
 starship.simulation.modules.large = {}
 starship.simulation.modules.large.weapons = {}
 starship.simulation.modules.large.utilities = {}
-
-starship.simulation.price = 0</script>
+starship.simulation.price = 0
+starship.sorted = {}</script>
 					<eventHandlerList />
 				</Script>
 				<Script isActive="yes" isFolder="no">
@@ -1791,7 +1791,7 @@ function list_superstructure_parts(Strnum)
 	local found = nil
 	cecho("\n")
 -- Model Number, Make, Model, Size, Mass, Hull, Turn Time, Type, Capacity, Power Requirement, Max Power Output, Cycle Requirement, Small Mods, Medium Mods, Large Mods, Cost 	
-	if Strnum then
+	if tonumber(Strnum) then
 		decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
 		decho("&lt;0,153,204&gt;                               Superstructure                                 \n")
 		decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
@@ -1805,6 +1805,13 @@ function list_superstructure_parts(Strnum)
 		if not found then
 			cecho("\n Superstructure ID could not be found")
 		end
+	elseif Strnum then
+		sort_superstructure_type( Strnum )
+		decho("&lt;0,153,204&gt; ID    Model               Name                               Price\n\n")
+		decho("&lt;102,0,153&gt;---------------------------------------------------------------------------------------\n")
+		for i = 1, n do
+			cecho("\n "..a_s(starship.sorted[i][1], 6)..""..a_s(starship.sorted[i][8], 20)..""..a_s(starship.sorted[i][2].." "..starship.sorted[i][3], 35)..""..starship.sorted[i][16])
+		end	
 	else
 		decho("&lt;0,153,204&gt; ID    Model               Name                               Price\n\n")
 		decho("&lt;102,0,153&gt;---------------------------------------------------------------------------------------\n")
@@ -1839,7 +1846,7 @@ function list_engine_parts(Strnum)
 	local found = nil
 	cecho("\n")
 -- Model Number, Make, Model, Output, Mass, Price
-	if Strnum then
+	if tonumber(Strnum) then
 		decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
 		decho("&lt;0,153,204&gt;                               Engine                                         \n")
 		decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
@@ -1852,6 +1859,13 @@ function list_engine_parts(Strnum)
 		end
 		if not found then
 			cecho("\n Engine ID could not be found")		
+		end
+	elseif Strnum then
+		sort_engine_type(Strnum)
+		decho("&lt;0,153,204&gt; Type      ID    Name                            Output     Mass       Price\n\n")
+		decho("&lt;102,0,153&gt;---------------------------------------------------------------------------------------\n")
+		for i = 1, n do
+			cecho("\n Engine    "..a_s(starship.sorted[i][1], 6)..""..a_s(starship.sorted[i][2].." "..starship.sorted[i][3], 32)..""..a_s(starship.sorted[i][4], 11)..""..a_s(starship.sorted[i][5], 11)..""..starship.sorted[i][6])
 		end
 	else
 		decho("&lt;0,153,204&gt; Type      ID    Name                            Output     Mass       Price\n\n")
@@ -1883,7 +1897,7 @@ function list_shield_parts(Strnum)
 	local found = nil
 	cecho("\n")
 -- Model Number, Make, Model, Strength, Mass, Recharge, Thermal Res, Kinetic Res, EM Res, Price
-	if Strnum then
+	if tonumber(Strnum) then
 		decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
 		decho("&lt;0,153,204&gt;                               Shield                                         \n")
 		decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
@@ -1896,6 +1910,13 @@ function list_shield_parts(Strnum)
 		end
 		if not found then
 			cecho("\n Shield ID could not be found")		
+		end
+	elseif Strnum then
+		sort_shield_type(Strnum)
+		decho("&lt;0,153,204&gt; Type     ID    Name                                 Shields    Mass       Price\n\n")
+		decho("&lt;102,0,153&gt;---------------------------------------------------------------------------------------\n")
+		for i = 1, n do
+			cecho("\n Shield   "..a_s(starship.sorted[i][1], 6)..""..a_s(starship.sorted[i][2].." "..starship.sorted[i][3], 37)..""..a_s(starship.sorted[i][4], 11)..""..a_s(starship.sorted[i][5], 11)..""..starship.sorted[i][10])
 		end
 	else
 		decho("&lt;0,153,204&gt; Type     ID    Name                                 Shields    Mass       Price\n\n")
@@ -1929,7 +1950,7 @@ function list_capacitor_parts(Strnum)
 	local found = nil
 	cecho("\n")
 -- Model Number, Make, Model, Capacity, Mass, Price
-	if Strnum then
+	if tonumber(Strnum) then
 		decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
 		decho("&lt;0,153,204&gt;                               Capacitor                                      \n")
 		decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
@@ -1941,6 +1962,13 @@ function list_capacitor_parts(Strnum)
 		end
 		if not found then
 			cecho("\n Capacitor ID could not be found")		
+		end
+	elseif Strnum then
+		sort_capacitor_type(Strnum)
+		decho("&lt;0,153,204&gt; Type       ID    Name                                 Kears        Mass       Price\n\n")
+		decho("&lt;102,0,153&gt;---------------------------------------------------------------------------------------\n")
+		for i = 1, n do
+			cecho("\n Capacitor  "..a_s(starship.sorted[i][1], 6)..""..a_s(starship.sorted[i][2].." "..starship.sorted[i][3], 37)..""..a_s(starship.sorted[i][4], 11)..""..a_s(starship.sorted[i][5], 11)..""..starship.sorted[i][6])
 		end
 	else
 		decho("&lt;0,153,204&gt; Type       ID    Name                                 Kears        Mass       Price\n\n")
@@ -1972,7 +2000,7 @@ function list_shipsim_parts(Strnum)
 	local found = nil
 	cecho("\n")
 -- Model Number, Model, Make, Max Cycles, Halons per Cycle, Price
-	if Strnum then
+	if tonumber(Strnum) then
 		decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
 		decho("&lt;0,153,204&gt;                               Shipsim                                        \n")
 		decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
@@ -1984,6 +2012,13 @@ function list_shipsim_parts(Strnum)
 		end
 		if not found then
 			cecho("\n Shipsim ID could not be found")		
+		end
+	elseif Strnum then
+		sort_shipsim_type(Strnum)
+		decho("&lt;0,153,204&gt; Type      ID    Name                           Cycles    Hal/cyc     Price\n\n")
+		decho("&lt;102,0,153&gt;---------------------------------------------------------------------------------------\n")
+		for i = 1, n do
+			cecho("\n Shipsim   "..a_s(starship.sorted[i][1], 6)..""..a_s(starship.sorted[i][2].." "..starship.sorted[i][3], 32)..""..a_s(starship.sorted[i][4], 11)..""..a_s(starship.sorted[i][5], 10)..""..starship.sorted[i][6])
 		end
 	else
 		decho("&lt;0,153,204&gt; Type      ID    Name                           Cycles    Hal/cyc     Price\n\n")
@@ -2015,7 +2050,7 @@ function list_sensor_parts(Strnum)
 	local found = nil
 	cecho("\n")
 -- Model Number, Make, Model, Sensor Strength, Mass, Price
-	if Strnum then
+	if tonumber(Strnum) then
 		decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
 		decho("&lt;0,153,204&gt;                               Sensor                                         \n")
 		decho("&lt;102,0,153&gt;------------------------------------------------------------------------------\n")
@@ -2028,6 +2063,13 @@ function list_sensor_parts(Strnum)
 		if not found then
 			cecho("\n Sensor ID could not be found")		
 		end		
+	elseif Strnum then
+		sort_sensor_type(Strnum)
+		decho("&lt;0,153,204&gt; Type     ID    Name                          Strength     Mass      Price\n\n")
+		decho("&lt;102,0,153&gt;---------------------------------------------------------------------------------------\n")
+		for i = 1, n do
+			cecho("\n Sensor   "..a_s(starship.sorted[i][1], 6)..""..a_s(starship.sorted[i][2].." "..starship.sorted[i][3], 33)..""..a_s(starship.sorted[i][4], 10)..""..a_s(starship.sorted[i][5], 10)..""..starship.sorted[i][6])
+		end
 	else
 		decho("&lt;0,153,204&gt; Type     ID    Name                          Strength     Mass      Price\n\n")
 		decho("&lt;102,0,153&gt;---------------------------------------------------------------------------------------\n")
@@ -2345,6 +2387,7 @@ end
 					<packageName></packageName>
 					<script>
 function remove_all_component_parts()
+	starship.sorted = {}
 	starship.simulation.superstructure = nil
 	starship.simulation.engine = nil
 	starship.simulation.shield = nil
@@ -2391,6 +2434,7 @@ end
 					<packageName></packageName>
 					<script>
 function remove_all_module_parts()
+	starship.sorted = {}
 	starship.simulation.modules.small = {}
 	starship.simulation.modules.small.weapons = {}
 	starship.simulation.modules.small.utilities = {}
@@ -2823,6 +2867,117 @@ end</script>
 				</Script>
 			</ScriptGroup>
 			<ScriptGroup isActive="yes" isFolder="yes">
+				<name>Starship Simulator Sorter</name>
+				<packageName></packageName>
+				<script>-------------------------------------------------
+--         Put your Lua functions here.        --
+--                                             --
+-- Note that you can also use external Scripts --
+-------------------------------------------------
+</script>
+				<eventHandlerList />
+				<Script isActive="yes" isFolder="no">
+					<name>SS Sort by Type</name>
+					<packageName></packageName>
+					<script>
+function sort_superstructure_type(Type)
+	starship.sorted = deep_copy(starship.superstructures)
+	local n = #starship.sorted
+	if string.lower(Type) == "model" then
+		quicksort_List( starship.sorted, 1, n, 8 )
+	elseif string.lower(Type) == "name" then
+		quicksort_List( starship.sorted, 1, n, 2 )
+	elseif string.lower(Type) == "price" then
+		quicksort_List( starship.sorted, 1, n, 16 )	
+	else
+		decho("&lt;0,128,0&gt;\n Sorting by &lt;192,192,192&gt;"..Type.."&lt;0,128,0&gt; could not be done. Doublecheck to see if your input was correct.\n\n")			
+	end
+end
+
+function sort_engine_type(Type)
+	starship.sorted = deep_copy(starship.engines)
+	local n = #starship.sorted
+	if string.lower(Type) == "name" then
+		quicksort_List( starship.sorted, 1, n, 2 )
+	elseif string.lower(Type) == "output" then
+		quicksort_List( starship.sorted, 1, n, 4 )
+	elseif string.lower(Type) == "mass" then
+		quicksort_List( starship.sorted, 1, n, 5 )
+	elseif string.lower(Type) == "price" then
+		quicksort_List( starship.sorted, 1, n, 6 )	
+	else
+		decho("&lt;0,128,0&gt;\n Sorting by &lt;192,192,192&gt;"..Type.."&lt;0,128,0&gt; could not be done. Doublecheck to see if your input was correct.\n\n")			
+	end
+end
+
+function sort_shield_type(Type)
+	starship.sorted = deep_copy(starship.shields)
+	local n = #starship.sorted
+	if string.lower(Type) == "shields" or string.lower(Type) == "shield" then
+		quicksort_List( starship.sorted, 1, n, 4 )
+	elseif string.lower(Type) == "name" then
+		quicksort_List( starship.sorted, 1, n, 2 )
+	elseif string.lower(Type) == "mass" then
+		quicksort_List( starship.sorted, 1, n, 5 )
+	elseif string.lower(Type) == "price" then
+		quicksort_List( starship.sorted, 1, n, 10 )	
+	else
+		decho("&lt;0,128,0&gt;\n Sorting by &lt;192,192,192&gt;"..Type.."&lt;0,128,0&gt; could not be done. Doublecheck to see if your input was correct.\n\n")			
+	end
+end
+
+function sort_capacitor_type(Type)
+	starship.sorted = deep_copy(starship.capacitors)
+	local n = #starship.sorted
+	if string.lower(Type) == "name" then
+		quicksort_List( starship.sorted, 1, n, 2 )
+	elseif string.lower(Type) == "kears" or string.lower(Type) == "kear" then
+		quicksort_List( starship.sorted, 1, n, 4 )
+	elseif string.lower(Type) == "mass" then
+		quicksort_List( starship.sorted, 1, n, 5 )
+	elseif string.lower(Type) == "price" then
+		quicksort_List( starship.sorted, 1, n, 6 )	
+	else
+		decho("&lt;0,128,0&gt;\n Sorting by &lt;192,192,192&gt;"..Type.."&lt;0,128,0&gt; could not be done. Doublecheck to see if your input was correct.\n\n")			
+	end
+end
+
+function sort_shipsim_type(Type)
+	starship.sorted = deep_copy(starship.shipsims)
+	local n = #starship.sorted
+	if string.lower(Type) == "name" then
+		quicksort_List( starship.sorted, 1, n, 2 )
+	elseif string.lower(Type) == "cycles" or string.lower(Type) == "cycles" then
+		quicksort_List( starship.sorted, 1, n, 4 )
+	elseif string.lower(Type) == "h/c" or string.lower(Type) == "hal/cyc" then
+		quicksort_List( starship.sorted, 1, n, 5 )
+	elseif string.lower(Type) == "price" then
+		quicksort_List( starship.sorted, 1, n, 6 )	
+	else
+		decho("&lt;0,128,0&gt;\n Sorting by &lt;192,192,192&gt;"..Type.."&lt;0,128,0&gt; could not be done. Doublecheck to see if your input was correct.\n\n")			
+	end
+end
+
+function sort_sensor_type(Type)
+	starship.sorted = deep_copy(starship.sensors)
+	local n = #starship.sorted
+	if string.lower(Type) == "name" then
+		quicksort_List( starship.sorted, 1, n, 2 )
+	elseif string.lower(Type) == "str" or string.lower(Type) == "strength" then
+		quicksort_List( starship.sorted, 1, n, 4 )
+	elseif string.lower(Type) == "mass" then
+		quicksort_List( starship.sorted, 1, n, 5 )
+	elseif string.lower(Type) == "price" then
+		quicksort_List( starship.sorted, 1, n, 6 )	
+	else
+		decho("&lt;0,128,0&gt;\n Sorting by &lt;192,192,192&gt;"..Type.."&lt;0,128,0&gt; could not be done. Doublecheck to see if your input was correct.\n\n")			
+	end
+end
+</script>
+					<eventHandlerList />
+				</Script>
+			</ScriptGroup>
+			<ScriptGroup isActive="yes" isFolder="yes">
 				<name>Associated Functions</name>
 				<packageName></packageName>
 				<script>-------------------------------------------------
@@ -2853,14 +3008,14 @@ end</script>
 
 
 
-function quicksort_List( List, Low, High )
+function quicksort_List( List, Low, High, Type )
 
 	if Low &lt; High then
 	
-		local pi = partition_array( List, Low, High )
+		local pi = partition_array( List, Low, High, Type )
 
-		quicksort_List( List, Low, pi - 1)
-		quicksort_List( List, pi + 1, High )
+		quicksort_List( List, Low, pi - 1, Type )
+		quicksort_List( List, pi + 1, High, Type )
 		
 	end	
 
@@ -2868,15 +3023,15 @@ end
 
 
 
-function partition_array( List, Low, High )
+function partition_array( List, Low, High, Type )
 
-	local pivot = tonumber(List[High][6])
+	local pivot = List[High][Type]
 	local i = Low - 1
 	local temp1
 	local temp2
 	
 	for j = Low, High - 1 do
-		if tonumber(List[j][6]) &lt;= pivot then
+		if List[j][Type] &lt;= pivot then
 			i = i + 1
 			temp1 = List[i]
 			temp2 = List[j]
@@ -2892,6 +3047,30 @@ function partition_array( List, Low, High )
 
 	return i + 1
 
+end</script>
+					<eventHandlerList />
+				</Script>
+				<Script isActive="no" isFolder="no">
+					<name>Deep Copy</name>
+					<packageName></packageName>
+					<script>-------------------------------------------------
+--         Put your Lua functions here.        --
+--                                             --
+-- Note that you can also use external Scripts --
+-------------------------------------------------
+function deep_copy(orig)
+    local orig_type = type(orig)
+    local copy
+    if orig_type == 'table' then
+        copy = {}
+        for orig_key, orig_value in next, orig, nil do
+            copy[deepcopy(orig_key)] = deepcopy(orig_value)
+        end
+        setmetatable(copy, deepcopy(getmetatable(orig)))
+    else -- number, string, boolean, etc
+        copy = orig
+    end
+    return copy
 end</script>
 					<eventHandlerList />
 				</Script>
