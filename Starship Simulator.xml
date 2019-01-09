@@ -1807,7 +1807,7 @@ function list_superstructure_parts(Strnum)
 		end
 	else
 		cecho(" ID    Model               Name                               Price\n\n")
-		cecho("------------------------------------------------------------------------------\n")
+		cecho("---------------------------------------------------------------------------------------\n")
 		for i = 1, n do
 			cecho("\n "..a_s(starship.superstructures[i][1], 6)..""..a_s(starship.superstructures[i][8], 20)..""..a_s(starship.superstructures[i][2].." "..starship.superstructures[i][3], 35)..""..starship.superstructures[i][16])
 		end
@@ -1854,10 +1854,10 @@ function list_engine_parts(Strnum)
 			cecho("\n Engine ID could not be found")		
 		end
 	else
-		cecho(" Type        ID    Name                                   Mass       Price\n\n")
-		cecho("------------------------------------------------------------------------------\n")
+		cecho(" Type      ID    Name                            Output     Mass       Price\n\n")
+		cecho("---------------------------------------------------------------------------------------\n")
 		for i = 1, n do
-			cecho("\n Engine      "..a_s(starship.engines[i][1], 6)..""..a_s(starship.engines[i][2].." "..starship.engines[i][3], 39)..""..a_s(starship.engines[i][5], 11)..""..starship.engines[i][6])
+			cecho("\n Engine    "..a_s(starship.engines[i][1], 6)..""..a_s(starship.engines[i][2].." "..starship.engines[i][3], 32)..""..a_s(starship.engines[i][4], 11)..""..a_s(starship.engines[i][5], 11)..""..starship.engines[i][6])
 		end
 	end
 	cecho("\n\n")
@@ -1898,10 +1898,10 @@ function list_shield_parts(Strnum)
 			cecho("\n Shield ID could not be found")		
 		end
 	else
-		cecho(" Type        ID    Name                                   Mass       Price\n\n")
-		cecho("------------------------------------------------------------------------------\n")
+		cecho(" Type     ID    Name                                 Shields    Mass       Price\n\n")
+		cecho("---------------------------------------------------------------------------------------\n")
 		for i = 1, n do
-			cecho("\n Shield      "..a_s(starship.shields[i][1], 6)..""..a_s(starship.shields[i][2].." "..starship.shields[i][3], 39)..""..a_s(starship.shields[i][5], 11)..""..starship.shields[i][10])
+			cecho("\n Shield   "..a_s(starship.shields[i][1], 6)..""..a_s(starship.shields[i][2].." "..starship.shields[i][3], 37)..""..a_s(starship.shields[i][4], 11)..""..a_s(starship.shields[i][5], 11)..""..starship.shields[i][10])
 		end
 	end
 	cecho("\n\n")
@@ -1943,10 +1943,10 @@ function list_capacitor_parts(Strnum)
 			cecho("\n Capacitor ID could not be found")		
 		end
 	else
-		cecho(" Type        ID    Name                                   Mass       Price\n\n")
-		cecho("------------------------------------------------------------------------------\n")
+		cecho(" Type       ID    Name                                 Kears        Mass       Price\n\n")
+		cecho("---------------------------------------------------------------------------------------\n")
 		for i = 1, n do
-			cecho("\n Capacitor   "..a_s(starship.capacitors[i][1], 6)..""..a_s(starship.capacitors[i][2].." "..starship.capacitors[i][3], 39)..""..a_s(starship.capacitors[i][5], 11)..""..starship.capacitors[i][6])
+			cecho("\n Capacitor  "..a_s(starship.capacitors[i][1], 6)..""..a_s(starship.capacitors[i][2].." "..starship.capacitors[i][3], 37)..""..a_s(starship.shields[i][4], 11)..""..a_s(starship.capacitors[i][5], 11)..""..starship.capacitors[i][6])
 		end
 	end
 	cecho("\n\n")
@@ -1986,10 +1986,10 @@ function list_shipsim_parts(Strnum)
 			cecho("\n Shipsim ID could not be found")		
 		end
 	else
-		cecho(" Type        ID    Name                              Power Usage     Price\n\n")
-		cecho("------------------------------------------------------------------------------\n")
+		cecho(" Type      ID    Name                           Cycles    Hal/cyc     Price\n\n")
+		cecho("---------------------------------------------------------------------------------------\n")
 		for i = 1, n do
-			cecho("\n Shipsim     "..a_s(starship.shipsims[i][1], 6)..""..a_s(starship.shipsims[i][2].." "..starship.shipsims[i][3], 37)..""..a_s(starship.shipsims[i][5], 13)..""..starship.shipsims[i][6])
+			cecho("\n Shipsim   "..a_s(starship.shipsims[i][1], 6)..""..a_s(starship.shipsims[i][2].." "..starship.shipsims[i][3], 32)..""..a_s(starship.shipsims[i][4], 11)..""..a_s(starship.shipsims[i][5], 10)..""..starship.shipsims[i][6])
 		end
 	end
 	cecho("\n\n")
@@ -2029,10 +2029,10 @@ function list_sensor_parts(Strnum)
 			cecho("\n Sensor ID could not be found")		
 		end		
 	else
-		cecho(" Type        ID    Name                                   Mass       Price\n\n")
-		cecho("------------------------------------------------------------------------------\n")
+		cecho(" Type     ID    Name                          Strength     Mass      Price\n\n")
+		cecho("---------------------------------------------------------------------------------------\n")
 		for i = 1, n do
-			cecho("\n Sensor      "..a_s(starship.sensors[i][1], 6)..""..a_s(starship.sensors[i][2].." "..starship.sensors[i][3], 39)..""..a_s(starship.sensors[i][5], 11)..""..starship.sensors[i][6])
+			cecho("\n Sensor   "..a_s(starship.sensors[i][1], 6)..""..a_s(starship.sensors[i][2].." "..starship.sensors[i][3], 33)..""..a_s(starship.sensors[i][4], 10)..""..a_s(starship.sensors[i][5], 10)..""..starship.sensors[i][6])
 		end
 	end
 	cecho("\n\n")
@@ -2085,7 +2085,7 @@ function list_module_parts(Strnum)
 		end
 	else
 		cecho(" Type        ID    Size      Name                          Price\n\n")
-		cecho("------------------------------------------------------------------------------\n")
+		cecho("---------------------------------------------------------------------------------------\n")
 		for i = 1, n do
 			cecho("\n Weapon      "..a_s(starship.modules.weapons[i][1], 6)..""..a_s(starship.modules.weapons[i][3], 10)..""..a_s(starship.modules.weapons[i][2], 30)..""..starship.modules.weapons[i][13])
 		end
@@ -2825,10 +2825,15 @@ end</script>
 			<ScriptGroup isActive="yes" isFolder="yes">
 				<name>Beauty Functions</name>
 				<packageName></packageName>
-				<script></script>
+				<script>-------------------------------------------------
+--         Put your Lua functions here.        --
+--                                             --
+-- Note that you can also use external Scripts --
+-------------------------------------------------
+</script>
 				<eventHandlerList />
-				<Script isActive="yes" isFolder="no">
-					<name>Add whitespace</name>
+				<Script isActive="no" isFolder="no">
+					<name>Add White Space</name>
 					<packageName></packageName>
 					<script>-- Add space to end
 function a_s( Str, max )
