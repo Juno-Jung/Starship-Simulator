@@ -1,6 +1,6 @@
 # Starship-Simulator
 
-An alternative to the shitty ship forge ship building hoops that you have to go through in Starmourn.
+An alternative to the awful ship forge ship building hoops that you have to go through in Starmourn.
 
 Shorthand includes ss for superstructure, cap for capacitor, mod for module and plural forms for everything are accepted.
 
